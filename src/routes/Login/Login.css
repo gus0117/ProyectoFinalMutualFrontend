@@ -1,0 +1,70 @@
+body{
+  background-image: url('../../assets/Login-img.jpg');
+  background-position: 50% 55% ; 
+}
+.sign-in, .sign-in-form {
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .center{
+    position: absolute;
+    top:40%;
+    left: 50%;
+    transform: translate(-50% , -50%)
+  }
+  .sign-in{
+    min-width: 45%;
+    border: 100px solid #99627A;
+    border-radius: 20px;
+    padding: 2% 0 2% 0;
+    width: auto;
+    background: rgba(47, 47, 47, 0.2);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    border: 1px solid rgba(47, 47, 47, 0.3);    
+  }
+
+  .letter{
+    font-family:  'Open Sans', sans-serif;
+    color: white;
+    font-size: xx-large;
+  }
+  .input-form {
+    background: none;
+    background-color: #99627A;
+    color: white;
+    font-size: 20px;
+    padding: 10px 10px 10px 5px;
+    display: block;
+    width: 100%;
+    border: none;
+    border-radius: 40px;
+    border: 1px solid #99627A;
+    margin: 25px 0;
+  }
+  
+  .input-form:focus {
+    outline: none;
+  }
+  
+  .btn-form {
+    min-width: 210px;
+    width: auto;
+    height: 50px;
+    border-radius: 5px;
+    letter-spacing: 0.5px;
+    line-height: 50px;
+    padding: 0 35px 0 35px;
+    font-size: 15px;
+    background-color: #643843;
+    color: white;
+    font-weight: bolder;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    margin-top: 25px;
+  }
