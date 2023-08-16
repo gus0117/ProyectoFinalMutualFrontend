@@ -1,7 +1,10 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route, Router, Routes } from 'react-router-dom';
 import Navigation from './routes/navigation/Navigation';
 import Afiliados from './routes/Afiliados/Afiliados';
 import Ordenes from './routes/Ordenes/Ordenes';
+import Home from './routes/Home/Home';
+import Comercios from './routes/Comercios/Comercios';
+import Pagos from './routes/Pagos/Pagos';
 
 function App() {
   

@@ -1,0 +1,21 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 10%;
+    background-color: var(--c-primary);
+    color: var(--c-text-white);
+}
+
+.nav-link {
+    font-family: 'Poppins', Courier, monospace;
+    margin-left: 12px;
+    text-decoration: none;
+    color: var(--c-text-white);
+    transition: 0.4s;
+}
+
+.nav-link:hover {
+    color: var(--c-secondary);
+    transition: 0.4s;
+}
