@@ -1,16 +1,16 @@
 import './Formulario.css'
-import { useEffect, useState } from 'react'
+import { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from '../context/UserContext';
 
 export const Formulario = () => {
-    const [incorrectUser, setIncorrectUser] = useState(true);
-    //const { setUser } = useContext(UserContext);
+    const [incorrectUser, setIncorrectUser] = useState(false);
+    const { setUser } = useContext(UserContext);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
 
     const onSubmit = (data) => {
-        //console.log(data);
         const { username, password } = data
         fetch("http://localhost:3000/api/users/signin", {
             method: 'POST',
@@ -22,23 +22,23 @@ export const Formulario = () => {
                 'Content-type': 'application/json; charset=UTF-8'
             }
         })
-        .then((response) => response.json())
-        .then((data) => { console.log(data.credentials) })
+        .then((response) => {
+            if(response.status === 401){
+                setIncorrectUser(true)
+                return
+            }
+            return response.json()
+        })
+        .then((userData) => { 
+            if(data){
+                //console.log(userData.credentials)
+                const user = {...userData.credentials, username: data.username}
+                setUser(user)
+                sessionStorage.setItem("user", JSON.stringify(user))
+                navigate('/')
+            }
+        })
         .catch((err) => { console.log(err.message) })
-        /* setUser(data);
-        localStorage.setItem('currentUser', JSON.stringify(data));
-        navigate('/'); */
-    
-        //TODO validar usuario con mockapi
-        /* if(validateUser(data.username, data.password)){
-          setUser(data);
-          localStorage.setItem('currentUser', JSON.stringify(data));
-          navigate('/');
-          setIncorrectUser(false);
-        }
-        else {
-          setIncorrectUser(true);
-        } */
     }
     return (
         <section className='sign-in center'>
