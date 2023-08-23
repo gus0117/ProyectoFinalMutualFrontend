@@ -36,7 +36,7 @@ const Navigation = () => {
             <Link className='nav-link' to="ordenes">Ordenes</Link>
             <Link className='nav-link' to="pagos">Pagos</Link>
           </div>
-          <div className='nav-link' onClick={handleLogOut}>Salir</div>
+          <a className='nav-link' onClick={handleLogOut}>Salir</a>
         </div>
       <Outlet />
     </>
