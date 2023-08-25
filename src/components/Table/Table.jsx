@@ -1,45 +1,43 @@
-import {IconEdit, IconDelete} from '../Icons'
+import { useState, useEffect } from 'react'
+import {getOrders} from '../../services/OrdenesService'
+import { IconEdit, IconDelete } from '../Icons'
 import './Table.css'
+
 export const Table = () => {
+  const [Orders, setOrders] = useState([])
+  useEffect(() => {
+    getOrders()
+      .then((data) => setOrders(data))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div className='table-wrapper'>
       <table className='table'>
         <thead className='thead'>
           <tr>
-            <th className='expand data-label'>DNI AFILIADO</th>
-            <th className='expand data-label'>COMERCIO</th>
+            <th>DNI AFILIADO</th>
+            <th>COMERCIO</th>
             <th>COD. DE COMERCIO</th>
-            <th className='expand'>AFILIADO</th>
-            <th className='expand'>COD. DE AFILIADO</th>
+            <th>AFILIADO</th>
+            <th>COD. DE AFILIADO</th>
             <th>FECHA EMISION</th>
-            <th className='expand'>ESTADO</th>
             <th>N° DE ORDEN</th>
           </tr>
         </thead>
         <tbody className='tbody'>
-          <tr>
-          <td>42555352</td>
-          <td>Comodin</td>
-          <td>212</td>
-          <td>Pepe Algo</td>
-          <td>360</td>
-          <td>22/10/2022</td>
-          <td>False</td>
-          <td>3555</td>
-          <td><span><IconEdit /><IconDelete/></span></td>
-          </tr>
-          <tr>
-          <td>42555352</td>
-          <td>Comodin</td>
-          <td>212</td>
-          <td>Pepe Algo</td>
-          <td>360</td>
-          <td>22/10/2022</td>
-          <td>False</td>
-          <td>3555</td>
-          <td><span><IconEdit /><IconDelete/></span></td>
-          </tr>
-
+          {Orders.map(order => (
+            <tr key={order.id_orden}>
+              <td>{order.dni_afiliado}</td>
+              <td>{order.nombre_comercio}</td>
+              <td>{order.id_comercio}</td>
+              <td>{order.nombre_afiliado}</td>
+              <td>{order.id_afiliado}</td>
+              <td>{order.fecha_emision}</td>
+              <td>{order.id_orden}</td>
+              <td><span><IconEdit /><IconDelete /></span></td>
+            </tr>
+          )
+          )}
         </tbody>
       </table>
     </div>

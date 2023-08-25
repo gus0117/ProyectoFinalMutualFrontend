@@ -2,10 +2,8 @@
 import { IconsSearch } from '../../components/Icons'
 import { Table } from '../../components/Table/Table'
 import Navigation from '../Navigation/Navigation'
-// import { fakeData } from '../../mocks/clientes.json'
 import './Ordenes.css'
 export const Ordenes = () => {
-  // const data = useMemo(() => fakeData, [])
   return (
     <>
       <Navigation />
@@ -14,7 +12,7 @@ export const Ordenes = () => {
           <h4> <IconsSearch /> Buscar Orden</h4>
         </div>
         <div className='container'>
-          <Table/>
+          <Table />
         </div>
       </section>
     </>
