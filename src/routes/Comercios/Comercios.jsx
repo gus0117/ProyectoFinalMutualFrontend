@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { getComercios } from '../../services/ComercioService';
+import './Comercios.css'
 
 const Comercios = () => {
   
