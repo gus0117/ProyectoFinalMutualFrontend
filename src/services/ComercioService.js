@@ -5,9 +5,10 @@ export const getComercios = async () => {
         const response = await fetch(URL);
         if (!response.ok) {
             console.log('Error al obtener la lista de comercios');
+            return null;
         }
         const data = await response.json();
-        console.log(data)
+        //console.log(data)
         return data
     } catch (error) {
         console.error('Error al obtener la lista de comercios:', error);

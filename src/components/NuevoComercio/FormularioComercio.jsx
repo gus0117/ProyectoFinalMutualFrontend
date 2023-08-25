@@ -61,7 +61,8 @@ const FormularioComercio = () => {
                 })
             } />
             <p>{errors.localidad?.message}</p>
-            <button className='btn-form'>Iniciar Sesion</button>
+            <button className='btn-form' type='submit'>Registrar</button>
+            <button className='btn-form' type='reset'>Cancelar</button>
         </form>
     </section>
   )
