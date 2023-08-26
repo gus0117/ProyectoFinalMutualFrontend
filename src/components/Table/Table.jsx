@@ -22,18 +22,21 @@ export const Table = () => {
             <th>COD. DE AFILIADO</th>
             <th>FECHA EMISION</th>
             <th>N° DE ORDEN</th>
+            <th>ESTADO</th>
           </tr>
         </thead>
         <tbody className='tbody'>
           {Orders.map(order => (
             <tr key={order.id_orden}>
-              <td>{order.dni_afiliado}</td>
-              <td>{order.nombre_comercio}</td>
-              <td>{order.id_comercio}</td>
-              <td>{order.nombre_afiliado}</td>
-              <td>{order.id_afiliado}</td>
-              <td>{order.fecha_emision}</td>
+              <td>{order.afiliado.dni}</td>
+              <td>{order.comercio.name}</td>
+              <td>{order.comercio.id_comercio}</td>
+              <td>{order.afiliado.name}</td>
+              <td>{order.afiliado.id_afiliado}</td>
+              <td>{order.fecha_solicitud}</td>
               <td>{order.id_orden}</td>
+              { order.estado_pagado ? <td>Pagado</td>: <td>No Pagado</td>}
+
               <td><span><IconEdit /><IconDelete /></span></td>
             </tr>
           )
