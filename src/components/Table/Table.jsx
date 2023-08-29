@@ -1,46 +1,39 @@
 import { useState, useEffect } from 'react'
 import {getOrders} from '../../services/OrdenesService'
-import { DateRangePicker } from 'react-date-range'
 import { IconEdit, IconDelete } from '../Icons'
+import { DateRangePicker } from 'rsuite'
+import 'rsuite/dist/rsuite.min.css'
 import './Table.css'
-import 'react-date-range/dist/styles.css' // main style file
-import 'react-date-range/dist/theme/default.css'
+
 
 export const Table = () => {
   const [allOrders, setAllOrders] = useState([])
   const [Orders, setOrders] = useState([])
-  const [startDate, setStartDate] = useState(new Date())
-  const [endDate, setEndDate] = useState(new Date())
+
   useEffect(() => {
     getOrders()
       .then((data) => setAllOrders(data))
       .catch((err) => console.log(err));
   }, []);
 
-  const selectionRange = {
-    startDate: startDate,
-    endDate: endDate,
-    key: 'selection',
-  }
 
   const handleSelect = (date) => {
     let filtered = allOrders.filter((order) =>{
-      let orderDate = new Date(order.fecha_emision)
-      return (orderDate >= date.selection.startDate &&
-         orderDate <= date.selection.endDate )
-    })
-    setStartDate(date.selection.startDate)
-    setEndDate(date.selection.endDate)
-    setOrders(filtered)
+    let orderDate = new Date(order.fecha_emision)
+    return (orderDate >= date[0] &&
+       orderDate <= date[1])
+  })
+  setOrders(filtered)
+    console.log(date)
+  
   }
   return (
     <>
     
     <div className='table-wrapper'>
-    <DateRangePicker
-        ranges={[selectionRange]}
-        onChange={handleSelect}
-      />
+      <div className='dates'>
+      <DateRangePicker onChange={handleSelect} />
+      </div>
       <table className='table'>
         <thead className='thead'>
           <tr>
@@ -56,7 +49,6 @@ export const Table = () => {
         </thead>
         <tbody className='tbody'>
           {Orders.map(order => {
-            console.log(Orders)
             let date = new Date (order.fecha_emision)
             return (<tr key={order.id_orden}>
               <td>{order.dni_afiliado}</td>
