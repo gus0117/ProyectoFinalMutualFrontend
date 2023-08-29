@@ -43,3 +43,23 @@
     background-color: var(--c-primary);
     color: var(--c-text-white);
 }
+
+.btn-container-comercio {
+    margin: 20px 5px;
+}
+
+.nuevo-comercio {
+    text-decoration: none;
+    color: var(--c-text-white);
+    background-color: #008000;
+    padding: 5px 12px;
+    border-radius: 4px;
+    font-family: 'Poppins', Courier, monospace;
+    transition: 0.4s;
+}
+
+.nuevo-comercio:hover{
+    color: #008000;
+    background-color: var(--c-text-white);
+    transform: 0.4s;
+}
