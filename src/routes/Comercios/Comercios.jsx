@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getComercios } from '../../services/ComercioService';
+import { deleteComercio, getComercios } from '../../services/ComercioService';
 import './Comercios.css'
 import { Link } from 'react-router-dom';
 
@@ -15,6 +15,10 @@ const Comercios = () => {
       //console.log(comercios);
     })
   },[comercios])
+
+  const borrarComercio = (id_comercio) => {
+    deleteComercio(id_comercio)
+  }
 
   return (
     <>
@@ -51,7 +55,7 @@ const Comercios = () => {
                     <td>{comercio.localidad}</td>
                     <td>
                       <Link to={`editarComercio/${comercio.id_comercio}`}>Edit</Link>
-                      <button>Delet</button>
+                      <button onClick={() => deleteComercio(comercio.id_comercio)}>Delet</button>
                     </td>
                   </tr>
                 ))

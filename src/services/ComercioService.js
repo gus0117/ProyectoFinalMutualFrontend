@@ -79,3 +79,19 @@ export const getComercioById = async( id_comercio) => {
         console.error('Error al obtener comercio:', error);
     }
 }
+
+export const deleteComercio = async(id_comercio) => {
+    await fetch(URL + '/' + id_comercio, {
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json; charset=UTF-8'
+        }
+    })
+    .then((response) => {
+        return response.json()
+    })
+    .then((data) => { 
+        console.log(data)
+    })
+    .catch((err) => { console.log(err.message) })
+}
