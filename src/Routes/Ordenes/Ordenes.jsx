@@ -11,7 +11,7 @@ export const Ordenes = () => {
       <section className='section-container'>
         <div className='section-container-title'>
           <h4> <IconsSearch /> Buscar Orden</h4>
-        <Link to={'/orden'}>Nueva Orden</Link>
+        <Link to={'/orden'} className='link-orden'>Nueva Orden</Link>
         </div>
         <div className='form-filter'>
         

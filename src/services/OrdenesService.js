@@ -9,3 +9,16 @@ export const getOrders = async () => {
   }
 };
 
+export const postOrders = (Order) => {
+  try {
+     fetch(`${SERVER_DOMAIN}/orden`,{
+      method: 'POST',
+      body: JSON.stringify(Order),
+      headers:{"Content-type": "application/json; charset=UTF-8"}
+      
+     });
+   
+  } catch (error) {
+    throw new Error(error);
+  }
+};

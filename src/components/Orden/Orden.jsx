@@ -1,12 +1,16 @@
 import { useForm } from 'react-hook-form'
+import { postOrders } from '../../services/OrdenesService';
 import './Orden.css'
 
 
 export const Orden = () => {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, handleSubmit,reset, formState: { errors } } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
+    // const { id_afiliado, id_comercio, monto_credito,fecha_vencimiento,
+    //  fecha_solicitud,interes} = data
+     postOrders(data)
+     reset();
   }
   return (
     <section className='section-container'>
@@ -19,13 +23,13 @@ export const Orden = () => {
           <label >Codigo de Usuario</label>
           <input
             type='number'
-            id='id_usuario'
+            id='id_afiliado'
             placeholder='Usuario'
-            {...register('id_usuario', {
+            {...register('id_afiliado', {
               required: 'Debe ingresar un codigo de usuario válido.'
             })}
           />
-          <p>{errors.id_usuario?.message}</p>
+          <p>{errors.id_afiliado?.message}</p>
 
           <label>Codigo de comercio</label>
           <input
@@ -41,13 +45,13 @@ export const Orden = () => {
           <label>Monto de crédito</label>
           <input
             type='number'
-            id='creditAmount'
+            id='monto_credito'
             placeholder='Monto'
-            {...register('creditAmount', {
+            {...register('monto_credito', {
               required: '⚠ Debe ingresar el monto de crédito.'
             })}
           />
-          <p>{errors.creditAmount?.message}</p>
+          <p>{errors.monto_credito?.message}</p>
         </div>
 
 
@@ -56,38 +60,38 @@ export const Orden = () => {
           <label >Fecha de emisión</label>
           <input
             type='date'
-            id='issueDate'
+            id='fecha_solicitud'
             placeholder='Contraseña'
-            {...register('issueDate', {
+            {...register('fecha_solicitud', {
               required: 'Debe ingresar una fecha de emisión válida.'
             })}
           />
-          <p>{errors.issueDate?.message}</p>
+          <p>{errors.fecha_solicitud?.message}</p>
           <label >Fecha de vencimiento</label>
           <input
             type='date'
-            id='expiryDate'
+            id='fecha_vencimiento'
             placeholder='Fecha'
-            {...register('expiryDate', {
+            {...register('fecha_vencimiento', {
               required: ' ⚠ Debe ingresar una fecha de vencimiento válida.'
             })}
           />
-          <p>{errors.expiryDate?.message}</p>
+          <p>{errors.fecha_vencimiento?.message}</p>
 
 
           <label >Porcentaje de interés</label>
           <input
             type='number'
-            id='interestRate'
-            placeholder='Contraseña'
-            {...register('interestRate', {
+            id='interes'
+            placeholder='Porcentaje'
+            {...register('interes', {
               required: 'Debe ingresar un porcentaje de interés válido.'
             })}
           />
-          <p>{errors.interestRate?.message}</p>
+          <p>{errors.interes?.message}</p>
         </div>
 
-        <button className='btn-form'>Imprimir Orden</button>
+        <button className='btn-form' type='submit'>Imprimir Orden</button>
       </form>
     </section>
 

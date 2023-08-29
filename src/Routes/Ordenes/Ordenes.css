@@ -36,3 +36,11 @@ form{
   margin-right: 1rem;
 
 }
+
+.link-orden{
+  color: white;
+  margin-left: 60%;
+}
+.link-orden:hover{
+  color: #0E2954;
+}
