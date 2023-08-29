@@ -1,25 +1,32 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './NuevoComercio.css';
-import { addComercio } from '../../services/ComercioService';
+import { editComercio, getComercioById } from '../../services/ComercioService';
 
-const NuevoComercio = () => {
+const EditComercio = () => {
     //const [incorrectForm, setIncorrectForm] = useState(false);
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { id } = useParams();
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        defaultValues: async () => getComercioById(id)
+    });
     const navigate = useNavigate();
+
+    useEffect(() => {
+        //getComercioById(id).then(data => )
+    }, [])
 
     const onSubmit = (data) => {
         const { name, cuit, barrio, calle, numero, phone, localidad } = data
-        addComercio(name, cuit, barrio, calle, numero, phone, localidad).then(
+        editComercio(id, name, cuit, barrio, calle, numero, phone, localidad).then(
             navigate('/comercios')
         );
     }
-  return (
+    return (
     <section className='container-nuevo-comercio'>
         <h1 className='letter'>Registrar Nuevo Comercio</h1>
         <form onSubmit={handleSubmit(onSubmit)} className='form-nuevo-comercio'>
-            <input type='text' className='input-comercio' placeholder='Nombre del comercio' 
+            <input type='text' className='input-comercio' placeholder='Nombre del comercio'
             {
                 ...register('name', {
                     required: 'Debe ingresar un nombre de comercio válido.'
@@ -69,12 +76,12 @@ const NuevoComercio = () => {
             }/>
             <p>{errors.name?.message}</p>
             <div className="btn-comercio-container">
-                <button className='btn-nuevo-comercio btn-guardar-comercio' type='submit'>Guardar</button>
+                <button className='btn-nuevo-comercio btn-guardar-comercio' type='submit'>Editar</button>
                 <button className='btn-nuevo-comercio btn-reset-comercio' type='reset'>Borrar</button>
             </div>
         </form>
     </section>
-  )
+    )
 }
 
-export default NuevoComercio
+export default EditComercio

@@ -14,7 +14,7 @@ const Comercios = () => {
       setComercios(data);
       //console.log(comercios);
     })
-  },[])
+  },[comercios])
 
   return (
     <>
@@ -50,7 +50,7 @@ const Comercios = () => {
                     <td>{comercio.numero}</td>
                     <td>{comercio.localidad}</td>
                     <td>
-                      <button>Edit</button>
+                      <Link to={`editarComercio/${comercio.id_comercio}`}>Edit</Link>
                       <button>Delet</button>
                     </td>
                   </tr>

@@ -7,6 +7,7 @@ import Comercios from './routes/Comercios/Comercios';
 import Pagos from './routes/Pagos/Pagos';
 import { Login } from './routes/Login/Login'
 import NuevoComercio from './routes/Comercios/NuevoComercio';
+import EditComercio from './routes/Comercios/EditComercio';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
           <Route path='afiliados' element={<Afiliados />} />
           <Route path='comercios' element={<Comercios />} />
           <Route path='comercios/nuevoComercio' element={<NuevoComercio />} />
+          <Route path='comercios/editarComercio/:id' element={<EditComercio />} />
           <Route path='ordenes' element={<Ordenes />} />
           <Route path='pagos' element={<Pagos />} />
         </Route>
