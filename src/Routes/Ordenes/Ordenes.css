@@ -23,3 +23,16 @@
   display: inline-block;
   margin: 1rem 1rem;
 }
+
+.form-filter{
+display: inline;
+width: 100%;
+}
+
+form{
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-right: 1rem;
+
+}

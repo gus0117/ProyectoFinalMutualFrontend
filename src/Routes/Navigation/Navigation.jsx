@@ -1,3 +1,4 @@
+import { Link, Outlet } from "react-router-dom";
 import './Navigation.css'
 
 const Navigation = () => {  
@@ -7,14 +8,15 @@ const Navigation = () => {
       <div className='navbar'>
         <h2 className='logo'>Mutual</h2>
           <div className="nav-links">
-            <a className='nav-link' to="inicio">Inicio</a>
-            <a className='nav-link' to="afiliados">Afiliados</a>
-            <a className='nav-link' to="comercios">Comercios</a>
-            <a className='nav-link' to="ordenes">Ordenes</a>
-            <a className='nav-link' to="pagos">Pagos</a>
+            <Link className='nav-link' to="inicio">Inicio</Link>
+            <Link className='nav-link' to="afiliados">Afiliados</Link>
+            <Link className='nav-link' to="comercios">Comercios</Link>
+            <Link className='nav-link' to="ordenes">Ordenes</Link>
+            <Link className='nav-link' to="pagos">Pagos</Link>
           </div>
           <div className='nav-link'>Salir</div>
         </div>
+      <Outlet />
     </>
     
   )

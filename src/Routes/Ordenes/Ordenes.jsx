@@ -1,15 +1,21 @@
-// import { useMemo } from 'react'
 import { IconsSearch } from '../../components/Icons'
 import { Table } from '../../components/Table/Table'
-import Navigation from '../Navigation/Navigation'
+import { Link } from 'react-router-dom';
+
 import './Ordenes.css'
+
 export const Ordenes = () => {
+
   return (
     <>
-      <Navigation />
       <section className='section-container'>
         <div className='section-container-title'>
           <h4> <IconsSearch /> Buscar Orden</h4>
+        <Link to={'/orden'}>Nueva Orden</Link>
+        </div>
+        <div className='form-filter'>
+        
+
         </div>
         <div className='container'>
           <Table />

@@ -1,4 +1,4 @@
-const SERVER_DOMAIN = 'http://localhost:3000/api';
+const SERVER_DOMAIN = 'https://64e65fa409e64530d17ff0a9.mockapi.io/api/v1';
 
 export const getOrders = async () => {
   try {
