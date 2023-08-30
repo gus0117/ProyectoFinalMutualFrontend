@@ -2,29 +2,36 @@ import React, { useEffect, useState } from 'react'
 import { deleteComercio, getComercios } from '../../services/ComercioService';
 import './Comercios.css'
 import { Link } from 'react-router-dom';
+import FiltroComercio from '../../components/FiltroComercio/FiltroComercio';
 
-
-const URL = "http://localhost:3000/api/comercios";
 
 const Comercios = () => {
   const [comercios, setComercios] = useState([])
-  
-  useEffect(()=>{
+
+  const getFilteredList = (filteredList) => {
+    setComercios(filteredList)
+  }
+
+  const resetTable = () => {
     getComercios().then( data => {
       setComercios(data);
-      //console.log(comercios);
     })
-  },[comercios])
-
-  const borrarComercio = (id_comercio) => {
-    deleteComercio(id_comercio)
   }
+
+  useEffect(()=>{
+    resetTable();
+  },[])
 
   return (
     <>
       <div className="btn-container-comercio">
         <Link className='nuevo-comercio' to="nuevoComercio">Nuevo Comercio</Link>
       </div>
+      <FiltroComercio 
+        list={comercios}
+        getFilteredList={getFilteredList}
+        resetTable={ resetTable }
+      />
       <div className='container'>
         <h1 className='table-title'>Listado de comercios</h1>
         <table className='comercio-table'>
