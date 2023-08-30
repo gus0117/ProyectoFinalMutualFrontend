@@ -1,0 +1,46 @@
+.thead{
+    color: white;
+  }
+  
+  .tbody{
+    color:white;
+  }
+  
+  .table-wrapper{
+    width: 100%;
+    background-color: #2E8A99;
+  }
+  
+  .table{
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+    table-layout: auto;  
+    border-collapse: collapse;
+    white-space: nowrap;
+    margin: auto;
+    overflow-x: auto;
+  }
+  
+  
+  
+  .table th,
+  .table td {
+    padding: 1.5rem;
+    text-align: center;
+  }
+  
+  .table td{
+    border-top: 0.5px solid #ddd;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .table tbody tr:hover{
+    background-color: #2E8A99;
+  }
+  
+  .dates{
+    text-align: center;
+    padding: 30px;
+  }
