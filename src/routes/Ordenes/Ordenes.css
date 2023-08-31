@@ -3,11 +3,11 @@
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    width: 90%;
-    height: 100%;
-    margin: 3rem auto;
     border: solid;
     border-color: white;
+  }
+  .orders-container {
+    width: 100%;
   }
   .section-container-title{
     background-color: #1F6E8C;
@@ -38,9 +38,12 @@
   }
   
   .link-orden{
+    text-decoration: none;
     color: white;
-    margin-left: 60%;
+    transition: 0.4s;
   }
   .link-orden:hover{
+    text-decoration: none;
     color: #0E2954;
+    transition: 0.4s;
   }

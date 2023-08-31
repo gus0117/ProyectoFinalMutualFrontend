@@ -10,13 +10,9 @@ const Ordenes = () => {
       <section className='section-container'>
         <div className='section-container-title'>
           <h4> <IconsSearch /> Buscar Orden</h4>
-        <Link to={'nuevaOrden'} className='link-orden'>Nueva Orden</Link>
+          <Link to={'nuevaOrden'} className='link-orden'>Nueva Orden</Link>
         </div>
-        <div className='form-filter'>
-        
-
-        </div>
-        <div className='container'>
+        <div className='orders-container'>
           <ListaOrdenes />
         </div>
       </section>

@@ -11,28 +11,35 @@ export const ListaOrdenes = () => {
   const [Orders, setOrders] = useState([])
 
   useEffect(() => {
-    getOrders()
-      .then((data) => setAllOrders(data))
-      .catch((err) => console.log(err));
+    resetTable()
   }, []);
 
 
-  const handleSelect = (date) => {
+  const handleSelect = (dates) => {
+    if(!dates){
+      resetTable()
+      return;
+    }
     let filtered = allOrders.filter((order) =>{
-    let orderDate = new Date(order.fecha_emision)
-    return (orderDate >= date[0] &&
-       orderDate <= date[1])
-  })
-  setOrders(filtered)
-    console.log(date)
-  
+      let orderDate = new Date(order.fecha_solicitud)
+      return (orderDate >= dates[0] &&
+        orderDate <= dates[1])
+    })
+    setAllOrders(filtered)
+    console.log(dates)
+  }
+
+  const resetTable = () => {
+    getOrders()
+      .then((data) => setAllOrders(data))
+      .catch((err) => console.log(err));
   }
   return (
     <>
-    
     <div className='table-wrapper'>
-      <div className='dates'>
-      <DateRangePicker onChange={handleSelect} />
+      <div className='dates-filter'>
+        <p>Filtrado por fecha</p>
+        <DateRangePicker onChange={handleSelect} />
       </div>
       <table className='table'>
         <thead className='thead'>
@@ -49,7 +56,6 @@ export const ListaOrdenes = () => {
         </thead>
         <tbody className='tbody'>
           {allOrders.map(order => {
-            console.log(order)
             let date = new Date (order.fecha_solicitud)
             return (<tr key={order.id_orden}>
               <td>{order.afiliado.dni}</td>
