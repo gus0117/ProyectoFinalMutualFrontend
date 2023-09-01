@@ -4,11 +4,12 @@ import { IconEdit, IconDelete } from '../Icons'
 import { DateRangePicker } from 'rsuite'
 import 'rsuite/dist/rsuite.min.css'
 import './ListaOrdenes.css'
-
+import { IconsSearch } from '../Icons'
+import { Link } from 'react-router-dom';
+import FiltroOrdenes from '../FiltroOrdenes/FiltroOrdenes'
 
 export const ListaOrdenes = () => {
   const [allOrders, setAllOrders] = useState([])
-  const [Orders, setOrders] = useState([])
 
   useEffect(() => {
     resetTable()
@@ -34,46 +35,60 @@ export const ListaOrdenes = () => {
       .then((data) => setAllOrders(data))
       .catch((err) => console.log(err));
   }
+
   return (
     <>
-    <div className='table-wrapper'>
-      <div className='dates-filter'>
-        <p>Filtrado por fecha</p>
-        <DateRangePicker onChange={handleSelect} />
-      </div>
-      <table className='table'>
-        <thead className='thead'>
-          <tr>
-            <th>DNI AFILIADO</th>
-            <th>COMERCIO</th>
-            <th>COD. DE COMERCIO</th>
-            <th>AFILIADO</th>
-            <th>COD. DE AFILIADO</th>
-            <th>FECHA EMISION</th>
-            <th>N° DE ORDEN</th>
-            <th>ESTADO</th>
-          </tr>
-        </thead>
-        <tbody className='tbody'>
-          {allOrders.map(order => {
-            let date = new Date (order.fecha_solicitud)
-            return (<tr key={order.id_orden}>
-              <td>{order.afiliado.dni}</td>
-              <td>{order.comercio.name}</td>
-              <td>{order.comercio.id_comercio}</td>
-              <td>{order.afiliado.name}</td>
-              <td>{order.afiliado.id_afiliado}</td>
-              <td>{date.toLocaleDateString()}</td>
-              <td>{order.id_orden}</td>
-              { order.estado_pagado ? <td>Pagado</td>: <td>No Pagado</td>}
+    <section className='section-container'>
+        <div className='section-container-title'>
+          <FiltroOrdenes 
+            list={allOrders}
+            getFilteredList={setAllOrders}
+            resetTable={resetTable}
+          />
+          <Link to={'nuevaOrden'} className='link-orden'>Nueva Orden</Link>
+        </div>
+        <div className='orders-container'>
+        <div className='table-wrapper'>
+            <div className='dates-filter'>
+              <p>Filtrado por fecha</p>
+              <DateRangePicker onChange={handleSelect} />
+            </div>
+            <table className='table'>
+              <thead className='thead'>
+                <tr>
+                  <th>DNI AFILIADO</th>
+                  <th>COMERCIO</th>
+                  <th>COD. DE COMERCIO</th>
+                  <th>AFILIADO</th>
+                  <th>COD. DE AFILIADO</th>
+                  <th>FECHA EMISION</th>
+                  <th>N° DE ORDEN</th>
+                  <th>ESTADO</th>
+                </tr>
+              </thead>
+              <tbody className='tbody'>
+                {allOrders.map(order => {
+                  let date = new Date (order.fecha_solicitud)
+                  return (<tr key={order.id_orden}>
+                    <td>{order.afiliado.dni}</td>
+                    <td>{order.comercio.name}</td>
+                    <td>{order.comercio.id_comercio}</td>
+                    <td>{order.afiliado.name}</td>
+                    <td>{order.afiliado.id_afiliado}</td>
+                    <td>{date.toLocaleDateString()}</td>
+                    <td>{order.id_orden}</td>
+                    { order.estado_pagado ? <td>Pagado</td>: <td>No Pagado</td>}
 
-              <td><span><IconEdit /><IconDelete /></span></td>
-            </tr>
-          )}
-          )}
-        </tbody>
-      </table>
-    </div>
+                    <td><span><IconEdit /><IconDelete /></span></td>
+                  </tr>
+                )}
+                )}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    
     </>
   )
 }

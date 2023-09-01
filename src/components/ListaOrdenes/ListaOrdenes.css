@@ -33,8 +33,6 @@
     margin-right: 3px;
   }
   
-  
-  
   .table th,
   .table td {
     padding: 1.5rem;
@@ -54,4 +52,8 @@
   .dates{
     text-align: center;
     padding: 30px;
+  }
+
+  .filtrar-comercio {
+    color: var(--c-text-dark);
   }
