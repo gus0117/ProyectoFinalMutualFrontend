@@ -79,7 +79,10 @@ export const ListaOrdenes = () => {
                     <td>{order.id_orden}</td>
                     { order.estado_pagado ? <td>Pagado</td>: <td>No Pagado</td>}
 
-                    <td><span><IconEdit /><IconDelete /></span></td>
+                    <td>
+                      { !order.estado_pagado && <button className='btn-pagar-orden'>Pagar</button>}
+                      
+                    </td>
                   </tr>
                 )}
                 )}

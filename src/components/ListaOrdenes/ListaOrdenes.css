@@ -57,3 +57,7 @@
   .filtrar-comercio {
     color: var(--c-text-dark);
   }
+
+  .btn-pagar-orden {
+    color: var(--c-text-dark);
+  }

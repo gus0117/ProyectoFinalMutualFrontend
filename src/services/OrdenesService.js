@@ -9,11 +9,19 @@ export const getOrders = async () => {
   }
 };
 
-export const postOrders = (Order) => {
+export const addOrders = async (id_afiliado, id_comercio, monto_credito, fecha_vencimiento, fecha_solicitud, interes) => {
   try {
      fetch(`${SERVER_DOMAIN}/ordenes`,{
       method: 'POST',
-      body: JSON.stringify(Order),
+      body: JSON.stringify({
+        id_afiliado,
+        id_comercio,
+        monto_credito,
+        fecha_solicitud,
+        fecha_vencimiento,
+        interes,
+        cuota: {fecha_vencimiento: fecha_vencimiento, monto: (monto_credito * (1 + interes))}
+      }),
       headers:{"Content-type": "application/json; charset=UTF-8"}
       
      });
