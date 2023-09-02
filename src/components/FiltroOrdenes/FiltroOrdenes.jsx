@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 const FiltroOrdenes = ({ list, getFilteredList, resetTable }) => {
     const [filter, setFilter] = useState("")
-    const [tipoFiltro, setTipoFiltro] = useState("comercio")
+    const [tipoFiltro, setTipoFiltro] = useState("todas")
     
     const filterList = () => (
         list.filter( item => {
@@ -15,17 +15,21 @@ const FiltroOrdenes = ({ list, getFilteredList, resetTable }) => {
             else if(tipoFiltro === "orden"){
                 return item.id_orden === Number(filter)
             }
+            else if(tipoFiltro ==="impagas"){
+                console.log("impagas")
+                return item.estado_pagado === false
+            }
             return true;
         })
     )
 
     useEffect(()=>{
-        if(filter === ""){
+        if(filter === "" && tipoFiltro !== "impagas"){
             resetTable();
             return;
         }
         getFilteredList(filterList())
-    },[filter])
+    },[filter, tipoFiltro])
 
     const handleFilter = (event) => {
         setFilter(event.target.value)
@@ -34,16 +38,23 @@ const FiltroOrdenes = ({ list, getFilteredList, resetTable }) => {
     const handleTypeFilter = (event) => {
         setTipoFiltro(event.target.value)
     }
+
+    const resetFilters = () => {
+        setTipoFiltro("todas")
+        setFilter("")
+    }
   
     return (
         <div className="filtrar-comercio">
             <input type="text" placeholder='Buscar Orden' value={filter} onChange={handleFilter}/>
             <select onChange={handleTypeFilter}>
+                <option value="todas">Todas</option>
                 <option value="comercio">Comercio</option>
                 <option value="afiliado">Afiliado</option>
                 <option value="orden">Codigo de orden</option>
+                <option value="impagas">Impagas</option>
             </select>
-            <button onClick={() => setFilter("")}>Limpiar</button>
+            <button onClick={() => resetFilters()}>Limpiar</button>
         </div>
   )
 }

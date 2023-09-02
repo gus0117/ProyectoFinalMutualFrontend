@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import {getOrders} from '../../services/OrdenesService'
+import {getOrders, pagarOrden} from '../../services/OrdenesService'
 import { IconEdit, IconDelete } from '../Icons'
 import { DateRangePicker } from 'rsuite'
 import 'rsuite/dist/rsuite.min.css'
@@ -30,6 +30,15 @@ export const ListaOrdenes = () => {
     console.log(dates)
   }
 
+  const handlePagarOrden = (id_orden) => {
+    if(confirm(`Desea pagar la orden ${id_orden}`)){
+      pagarOrden(id_orden).then( () => {
+        resetTable()
+        alert(`Orden ${id_orden} pagada con exito`)
+      })
+    }
+  }
+
   const resetTable = () => {
     getOrders()
       .then((data) => setAllOrders(data))
@@ -50,7 +59,7 @@ export const ListaOrdenes = () => {
         <div className='orders-container'>
         <div className='table-wrapper'>
             <div className='dates-filter'>
-              <p>Filtrado por fecha</p>
+              <p className='order-label'>Filtrado por fecha</p>
               <DateRangePicker onChange={handleSelect} />
             </div>
             <table className='table'>
@@ -80,8 +89,7 @@ export const ListaOrdenes = () => {
                     { order.estado_pagado ? <td>Pagado</td>: <td>No Pagado</td>}
 
                     <td>
-                      { !order.estado_pagado && <button className='btn-pagar-orden'>Pagar</button>}
-                      
+                      { !order.estado_pagado && <button className='btn-pagar-orden' onClick={() => handlePagarOrden(order.id_orden)}>Pagar</button>}
                     </td>
                   </tr>
                 )}

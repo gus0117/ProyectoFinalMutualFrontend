@@ -23,7 +23,6 @@ export const NuevaOrden = () => {
         data => {
           setAfiliado(data)
           setAfilEncontrado(true)
-          console.log(data);
         }
       )
       return;
