@@ -101,7 +101,7 @@ export const NuevaOrden = () => {
                   required: '⚠ Debe ingresar el monto de crédito.'
                 })}
               />
-              <label className='order-label'>El porcentaje de interés es {porcentajeInteres * 100}%</label>
+              <label className='order-label'>El porcentaje de interés de la cuota será {porcentajeInteres * 100}%</label>
 
               <p>{errors.monto_credito?.message}</p>
             </div>

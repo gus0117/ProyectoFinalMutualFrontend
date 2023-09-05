@@ -32,19 +32,22 @@ export const addOrders = async (id_afiliado, id_comercio, monto_credito, fecha_v
 };
 
 export const pagarOrden = async (id_orden) => {
-  try {
-    fetch(`${SERVER_DOMAIN}/ordenes/${id_orden}`,{
-     method: 'PUT',
-     body: JSON.stringify({
-       fecha_pago: new Date()
-     }),
-     headers:{"Content-type": "application/json; charset=UTF-8"}
-     
-    });
-  
- } catch (error) {
-   throw new Error(error);
- }
+  await fetch(`${SERVER_DOMAIN}/ordenes/${id_orden}`, {
+    method: 'PUT',
+    body: JSON.stringify({
+        fecha_pago: formatDate(new Date())
+    }),
+    headers: {
+        'Content-type': 'application/json; charset=UTF-8'
+    }
+})
+.then((response) => {
+    return response.json()
+})
+.then((data) => { 
+    console.log(data)
+})
+.catch((err) => { console.log(err.message) })
 }
 
 export const getOrdenesByAfiliado = async (id_afiliado) => {
@@ -55,4 +58,18 @@ export const getOrdenesByAfiliado = async (id_afiliado) => {
  } catch (error) {
    throw new Error(error);
  }
+}
+
+function formatDate(date) {
+  var d = new Date(date),
+      month = '' + (d.getMonth() + 1),
+      day = '' + d.getDate(),
+      year = d.getFullYear();
+
+  if (month.length < 2) 
+      month = '0' + month;
+  if (day.length < 2) 
+      day = '0' + day;
+
+  return [year, month, day].join('-');
 }

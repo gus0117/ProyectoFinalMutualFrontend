@@ -71,6 +71,7 @@ export const ListaOrdenes = () => {
                   <th>AFILIADO</th>
                   <th>COD. DE AFILIADO</th>
                   <th>FECHA EMISION</th>
+                  <th>FECHA PAGO</th>
                   <th>N° DE ORDEN</th>
                   <th>ESTADO</th>
                 </tr>
@@ -85,6 +86,7 @@ export const ListaOrdenes = () => {
                     <td>{order.afiliado.name}</td>
                     <td>{order.afiliado.id_afiliado}</td>
                     <td>{date.toLocaleDateString()}</td>
+                    {order.estado_pagado ? <td>{order.fecha_pago}</td> : <td>Pendiente</td>}
                     <td>{order.id_orden}</td>
                     { order.estado_pagado ? <td>Pagado</td>: <td>No Pagado</td>}
 
