@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { getAfiliadoById } from '../../services/AfiliadoService'
 import { useForm } from 'react-hook-form'
 import { getOrdenesByAfiliado } from '../../services/OrdenesService';
+import { getCuotaByAfiliadoId } from '../../services/CuotaServices';
 
 const Afiliados = () => {
 
@@ -18,6 +19,11 @@ const Afiliados = () => {
         getOrdenesByAfiliado(id_afiliado).then(
           dataOrenes => {
             setOrdenes(dataOrenes)
+            getCuotaByAfiliadoId(id_afiliado).then(
+              dataCuotas => {
+                setCuotas(dataCuotas)
+              }
+            )
           }
         )
       }
@@ -86,8 +92,8 @@ const Afiliados = () => {
           <tbody>
             {
               cuotas.map( cuota => (
-                <tr key={cuota.id}>
-                  <td>{cuota.id}</td>
+                <tr key={cuota.id_cuota}>
+                  <td>{cuota.id_cuota}</td>
                   <td>{cuota.fecha_vencimiento}</td>
                   <td>{cuota.monto}</td>
                   { cuota.estado_pagado ? <td>Pagado</td> : <td>No Pagado</td>}
