@@ -9,6 +9,7 @@ import { Login } from './routes/Login/Login'
 import NuevoComercio from './routes/Comercios/NuevoComercio';
 import EditComercio from './routes/Comercios/EditComercio';
 import { NuevaOrden } from './routes/Ordenes/NuevaOrden';
+import ResumenAfiliado from './routes/Resumen/ResumenAfiliado';
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path='/' element={<Navigation />}>
           <Route path='inicio' element={<Home />} />
           <Route path='afiliados' element={<Afiliados />} />
+          <Route path='resumen' element={<ResumenAfiliado />} />
           <Route path='comercios' element={<Comercios />} />
           <Route path='comercios/nuevoComercio' element={<NuevoComercio />} />
           <Route path='comercios/editarComercio/:id' element={<EditComercio />} />

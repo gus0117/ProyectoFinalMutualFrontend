@@ -32,6 +32,7 @@ const Navigation = () => {
           <div className="nav-links">
             <Link className='nav-link' to="inicio">Inicio</Link>
             <Link className='nav-link' to="afiliados">Afiliados</Link>
+            <Link className='nav-link' to="resumen">Resumen</Link>
             <Link className='nav-link' to="comercios">Comercios</Link>
             <Link className='nav-link' to="ordenes">Ordenes</Link>
             <Link className='nav-link' to="pagos">Pagos</Link>
