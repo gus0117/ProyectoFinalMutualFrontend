@@ -14,3 +14,17 @@ export const getAfiliadoById = async( id_afiliado) => {
         console.error('Error al obtener afiliado:', error);
     }
 }
+
+export const getAfiliados = async() => {
+    try {
+        const response = await fetch(URL);
+        if (!response.ok) {
+            console.log('Error al obtener los afiliados');
+            return null;
+        }
+        const data = await response.json();
+        return data
+    } catch (error) {
+        console.error('Error al obtener afiliados:', error);
+    }
+}

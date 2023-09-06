@@ -1,9 +1,8 @@
-import React from 'react'
-
+import { TableAfiliados } from "./TableAfiliados"
 const Afiliados = () => {
 
   return (
-    <div>Afiliados</div>
+    <TableAfiliados />
   )
 }
 

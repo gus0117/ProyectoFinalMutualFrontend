@@ -5,7 +5,10 @@
     padding: 0;
     box-sizing: border-box;
 }
-
+body{
+    background: rgb(14,41,84);
+background: linear-gradient(90deg, rgba(14,41,84,1) 0%, rgba(31,110,140,1) 88%, rgba(46,138,153,1) 100%);
+}
 :root {
     --c-primary: #0E2954;
     --c-secondary: #1F6E8C;
