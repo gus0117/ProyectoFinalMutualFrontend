@@ -1,0 +1,67 @@
+.home-container{
+    margin: 10px 50px;
+    padding: 10px 20px;
+    background-color: var(--c-white);
+    border-radius: 7px;
+}
+
+.home-quick-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.quick-button {
+    text-decoration: none;
+    color: var(--c-text-white);
+    background-color: var(--c-secondary);
+    margin: 5px;
+    padding: 20px;
+    width: 150px;
+    text-align: center;
+    font-family: 'Poppins', Courier, monospace;
+    font-size: 20px;
+    border-radius: 7px;
+    transition: 0.4s;
+}
+
+.quick-button:hover {
+    text-decoration: none;
+    background-color: #deb887;
+    color: var(--c-secondary);
+    transition: 0.4s;
+}
+
+.home-descriptions {
+    padding-left: 30px;
+}
+
+.bg-secondary {
+    background-color: var(--c-secondary);
+    color: #fdddb4;
+    padding-left: 10px;
+    border-radius: 10px;
+}
+
+.home-main-options {
+    margin-top: 12px;
+    margin-left: 40px;
+}
+
+.option-guide {
+    font-size: 1rem;
+    font-family: 'Poppins', Calibri, 'Trebuchet MS', sans-serif;
+    margin-top: 10px;
+}
+
+.option-guide span {
+    color: var(--c-secondary);
+    background-color: #deb887;
+    margin-right: 4px;
+    padding: 1px 3px;
+}
+
+.home-sublist {
+    margin-left: 40px;
+}
