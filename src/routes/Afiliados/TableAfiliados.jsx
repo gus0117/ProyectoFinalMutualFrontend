@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import {getAfiliados} from '../../services/AfiliadoService'
 import { IconEdit } from '../../components/Icons'
+// import { FiltroAfiliado } from '../../components/FiltroAfiliado/FiltroAfiliado'
 import './TableAfiliados.css'
 
 
 export const TableAfiliados = () => {
   const [allAffiliates, setAllAffiliates] = useState([])
- 
+  const [query, setQuery] = useState('')
 
   useEffect(() => {
     getAfiliados()
@@ -14,20 +15,21 @@ export const TableAfiliados = () => {
       .catch((err) => console.log(err));
   }, []);
 
+  const handleSearch=(event)=>{
+    const getSearch = event.target.value;
+    setQuery(getSearch)
+    console.log(getSearch)
+    if(getSearch.length>0){
+      const searchdata = allAffiliates.filter((item) =>item.dni.includes(getSearch))
+      setAllAffiliates(searchdata)
+    }
+  }
 
-  // const handleSelect = (date) => {
-  //   let filtered = allAffiliates.filter((order) =>{
-  //   let orderDate = new Date(order.fecha_emision)
-  //   return (orderDate >= date[0] &&
-  //      orderDate <= date[1])
-  // })
-  // setAllAffiliates(filtered)
-  //   console.log(date)
-  
-  // }
+
   return (
     <>
     
+    <input type="text" name="name" value = {query} className="form-control-afiliado" onChange={(e)=>handleSearch(e)} placeholder="Busqueda DNI" />
     <div className='table-wrapper-afiliados'>
       <table className='table-afiliados'>
         <thead className='thead-afiliados'>
@@ -36,8 +38,8 @@ export const TableAfiliados = () => {
             <th>APELLIDO</th>
             <th>DNI</th>
             <th>SALDO</th>
-            <th>DNI</th>
-            <th>ACTIVO</th>
+            <th>ESTADO</th>
+            <th></th>
           </tr>
         </thead>
         <tbody className='tbody-afiliados'>
