@@ -33,7 +33,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.delete-button {
+.modal-button {
   background-color: transparent; 
   border: none; 
   cursor: pointer; 

@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom';
 import { TableAfiliados } from "./TableAfiliados"
 import { IconsSearch, IconAdd } from "../../components/Icons"
 import './Afiliados.css'
-// import { Modal } from '../Afiliados/Modal';
 const Afiliados = () => {
 
   return (
@@ -14,7 +13,6 @@ const Afiliados = () => {
         <h4> <IconsSearch /> Buscar Afiliado </h4>
       </article>
       <TableAfiliados />
-      {/* <Modal/> */}
     </section>
   )
 }
