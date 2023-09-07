@@ -1,4 +1,8 @@
-
+.form-control-afiliado{
+  width:60%;
+  height: 35px;
+  margin-left: 18% ; 
+}
 .thead-afiliados{
   color: white;
 }

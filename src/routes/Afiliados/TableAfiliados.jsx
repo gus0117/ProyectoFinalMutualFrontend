@@ -7,29 +7,33 @@ import './TableAfiliados.css'
 
 export const TableAfiliados = () => {
   const [allAffiliates, setAllAffiliates] = useState([])
+  const [affiliates, setAffiliates] = useState([])
   const [query, setQuery] = useState('')
 
   useEffect(() => {
     getAfiliados()
-      .then((data) => setAllAffiliates(data))
+      .then((data) => {
+        setAllAffiliates(data);
+        setAffiliates(data);
+      })
       .catch((err) => console.log(err));
   }, []);
 
   const handleSearch=(event)=>{
     const getSearch = event.target.value;
     setQuery(getSearch)
-    console.log(getSearch)
     if(getSearch.length>0){
       const searchdata = allAffiliates.filter((item) =>item.dni.includes(getSearch))
       setAllAffiliates(searchdata)
+    }else{
+      setAllAffiliates(affiliates)
     }
   }
 
 
   return (
     <>
-    
-    <input type="text" name="name" value = {query} className="form-control-afiliado" onChange={(e)=>handleSearch(e)} placeholder="Busqueda DNI" />
+    <input type="text"  name="name" value = {query} className="form-control-afiliado" onChange={(e)=>handleSearch(e)} placeholder="Busqueda DNI" />
     <div className='table-wrapper-afiliados'>
       <table className='table-afiliados'>
         <thead className='thead-afiliados'>
@@ -37,7 +41,13 @@ export const TableAfiliados = () => {
             <th>NOMBRE</th>
             <th>APELLIDO</th>
             <th>DNI</th>
+            <th>CUIL</th>
+            <th>TELEFONO</th>
+            <th>MAIL</th>
             <th>SALDO</th>
+            <th>BARRIO</th>
+            <th>CALLE</th>
+            <th>NUMERO</th>
             <th>ESTADO</th>
             <th></th>
           </tr>
@@ -48,7 +58,13 @@ export const TableAfiliados = () => {
               <td>{affiliate.name}</td>
               <td>{affiliate.lastname}</td>
               <td>{affiliate.dni}</td>
+              <td>{affiliate.cuil}</td>
+              <td>{affiliate.phone}</td>
+              <td>{affiliate.mail}</td>
               <td>{affiliate.saldo}</td>
+              <td>{affiliate.barrio}</td>
+              <td>{affiliate.calle}</td>
+              <td>{affiliate.numero}</td>
               { affiliate.active ? <td>Activo</td>: <td>Inactivo</td>}
 
               <td><span><IconEdit /></span></td>

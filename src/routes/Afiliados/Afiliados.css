@@ -4,5 +4,13 @@
   justify-content: center;
   flex-direction: column;
   color: white;
-  margin: 1%;
+  margin: 1% 9%;
+}
+.add-afiliado{
+  margin-top: 2%;
+  margin-left: 75%;
+}
+
+.link-afiliado{
+  color: white;
 }
