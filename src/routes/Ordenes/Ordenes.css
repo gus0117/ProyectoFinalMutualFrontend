@@ -38,6 +38,7 @@
   .link-orden{
     text-decoration: none;
     color: white;
+    margin: auto 10px;
     transition: 0.4s;
   }
   .link-orden:hover{

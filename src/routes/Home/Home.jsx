@@ -28,14 +28,15 @@ const Home = () => {
           <li>
             <p className="option-guide">
               <span>Afiliados:</span>En esta opción se pueden gestionar las operaciones:
-              <ul className='home-sublist'>
+              
+            </p>
+            <ul className='home-sublist'>
                 <li>Visualizar todos los afiliados registrados en la base de datos.</li>
                 <li>Registrar un nuevo afiliado.</li>
                 <li>Buscar un afiliado particular.</li>
                 <li>Editar datos de un afiliado.</li>
                 <li>Eliminar registros de un afiliado.</li>
               </ul>
-            </p>
           </li>
           <li>
             <p className="option-guide">
@@ -45,25 +46,27 @@ const Home = () => {
           <li>
             <p className="option-guide">
               <span>Comercios:</span>En esta opción se pueden gestionar las operaciones:
-              <ul className='home-sublist'>
+              
+            </p>
+            <ul className='home-sublist'>
                 <li>Visualizar todos los comercios registrados en la base de datos.</li>
                 <li>Registrar un nuevo comercio.</li>
                 <li>Buscar comercios por nombre.</li>
                 <li>Editar datos de un comercio.</li>
                 <li>Eliminar comercio de la base de datos.</li>
               </ul>
-            </p>
           </li>
           <li>
             <p className="option-guide">
               <span>Ordenes:</span>En esta opción se pueden gestionar las operaciones:
-              <ul className='home-sublist'>
+              
+            </p>
+            <ul className='home-sublist'>
                 <li>Visualizar todas las ordenes emitidas.</li>
                 <li>Emitir una nueva orden para un afiliado.</li>
                 <li>Buscar ordenes por rango de fecha, comercio, codigo de afiliado o impagas.</li>
                 <li>Registrar el pago de una orden.</li>
               </ul>
-            </p>
           </li>
           <li>
             <p className="option-guide">

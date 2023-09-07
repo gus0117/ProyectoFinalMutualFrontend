@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import './FiltroOrdenes.css'
 
 const FiltroOrdenes = ({ list, getFilteredList, resetTable }) => {
     const [filter, setFilter] = useState("")
@@ -54,7 +55,7 @@ const FiltroOrdenes = ({ list, getFilteredList, resetTable }) => {
                 <option value="orden">Codigo de orden</option>
                 <option value="impagas">Impagas</option>
             </select>
-            <button onClick={() => resetFilters()}>Limpiar</button>
+            <button onClick={() => resetFilters()} className="simple-button btn-white">Limpiar</button>
         </div>
   )
 }

@@ -2,10 +2,17 @@ import React from 'react'
 
 import { ListaOrdenes } from '../../components/ListaOrdenes/ListaOrdenes'
 import './Ordenes.css'
+import '../../App.css'
 
 const Ordenes = () => {
   return (
-    <ListaOrdenes />
+    <>
+      <div className="section-title">
+        <h4 className="text-center">Gestión de ordenes</h4>
+      </div>
+      <ListaOrdenes />
+    </>
+    
   )
 }
 

@@ -9,7 +9,10 @@ const Pagos = () => {
   const onSubmit = (data) => {
     const { id_afiliado } = data
     getCuotaByAfiliadoId(id_afiliado).then(
-      data => { setCuotas(data) }
+      data => { 
+        setCuotas(data)
+        console.log(cuotas)
+      }
     )
   }
 
@@ -20,7 +23,13 @@ const Pagos = () => {
   }
 
   return (
-    <div className='container-nuevo-comercio'>
+    <>
+      <div className="section-title">
+        <h4 className="text-center">Gestión de pagos de cuotas</h4>
+      </div>
+      <div className='section-container'>
+        <div className='section-container-title'>
+        <p className='description'>Ingrese codigo de afiliado</p>
         <form onSubmit={handleSubmit(onSubmit)} className='form-nuevo-comercio'>
               <input type='number' placeholder='Codigo del afiliado' className='input-comercio'
               {
@@ -34,10 +43,13 @@ const Pagos = () => {
                   <button className='btn-nuevo-comercio btn-reset-comercio' type='reset'>Borrar</button>
               </div>
         </form>
-
-        <div className='container'>
-          <h1 className='table-title'>Listado Cuotas</h1>
-          <table className='comercio-table'>
+        </div>
+        
+       {
+        cuotas.length > 0 && 
+        <div className="orders-container">
+            <div className='table-wrapper'>
+          <table className='table'>
             <thead>
               <tr>
                 <th>Código</th>
@@ -64,7 +76,13 @@ const Pagos = () => {
             </tbody>
           </table>
         </div>
-    </div>
+        </div>
+        
+        
+       }
+        </div>
+    </>
+    
   )
 }
 

@@ -48,13 +48,13 @@ export const ListaOrdenes = () => {
   return (
     <>
     <section className='section-container'>
-        <div className='section-container-title'>
+        <div className='section-container-title d-flex align-items-center justify-content-between'>
           <FiltroOrdenes 
             list={allOrders}
             getFilteredList={setAllOrders}
             resetTable={resetTable}
           />
-          <Link to={'nuevaOrden'} className='link-orden'>Nueva Orden</Link>
+          <Link to={'nuevaOrden'} className='link-nuevo-registro'>Nueva Orden</Link>
         </div>
         <div className='orders-container'>
         <div className='table-wrapper'>
@@ -91,7 +91,7 @@ export const ListaOrdenes = () => {
                     { order.estado_pagado ? <td>Pagado</td>: <td>No Pagado</td>}
 
                     <td>
-                      { !order.estado_pagado && <button className='btn-pagar-orden' onClick={() => handlePagarOrden(order.id_orden)}>Pagar</button>}
+                      { !order.estado_pagado && <button className='simple-button btn-dark' onClick={() => handlePagarOrden(order.id_orden)}>Pagar</button>}
                     </td>
                   </tr>
                 )}
