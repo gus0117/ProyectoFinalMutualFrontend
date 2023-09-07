@@ -28,3 +28,18 @@ export const getAfiliados = async() => {
         console.error('Error al obtener afiliados:', error);
     }
 }
+
+
+export const postAfiliado = (afiliado) => {
+    try {
+       fetch(`${URL}`,{
+        method: 'POST',
+        body: JSON.stringify(afiliado),
+        headers:{"Content-type": "application/json; charset=UTF-8"}
+        
+       });
+     
+    } catch {
+      throw new Error('could not fetch post');
+    }
+  };
