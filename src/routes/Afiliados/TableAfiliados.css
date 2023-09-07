@@ -33,6 +33,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.delete-button {
+  background-color: transparent; 
+  border: none; 
+  cursor: pointer; 
+  padding: 0; 
+}
 
 .tbody-afiliados tr:hover{
   background-color: #2E8A99;

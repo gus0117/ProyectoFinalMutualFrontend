@@ -43,3 +43,15 @@ export const postAfiliado = (afiliado) => {
       throw new Error('could not fetch post');
     }
   };
+
+  export const deleteAfiliado = (id) => {
+    try {
+       fetch(`${URL}/${id}`,{
+        method: 'DELETE',
+        headers:{"Content-type": "application/json; charset=UTF-8"} 
+       });
+     
+    } catch {
+      throw new Error('could not fetch DELETE');
+    }
+  };

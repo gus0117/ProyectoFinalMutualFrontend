@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
-import {getAfiliados} from '../../services/AfiliadoService'
-import { IconEdit } from '../../components/Icons'
+import {deleteAfiliado, getAfiliados} from '../../services/AfiliadoService'
+import { IconDelete, IconEdit } from '../../components/Icons'
 // import { FiltroAfiliado } from '../../components/FiltroAfiliado/FiltroAfiliado'
 import './TableAfiliados.css'
+
 
 
 export const TableAfiliados = () => {
@@ -28,6 +29,12 @@ export const TableAfiliados = () => {
     }else{
       setAllAffiliates(affiliates)
     }
+  }
+
+  const handleDelete=(id)=>{
+    const updatedAffiliates = allAffiliates.filter((affiliate) => affiliate.id_afiliado !== id);
+    setAllAffiliates(updatedAffiliates);
+    deleteAfiliado(id)
   }
 
 
@@ -66,8 +73,14 @@ export const TableAfiliados = () => {
               <td>{affiliate.calle}</td>
               <td>{affiliate.numero}</td>
               { affiliate.active ? <td>Activo</td>: <td>Inactivo</td>}
-
-              <td><span><IconEdit /></span></td>
+              <td>
+                  <span>
+                    <IconEdit />
+                    <button className='delete-button' onClick={() => handleDelete(affiliate.id_afiliado)}>
+                      <IconDelete />
+                    </button>
+                  </span>
+                </td>
             </tr>
           ))}
         </tbody>
