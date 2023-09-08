@@ -41,7 +41,11 @@ export const NuevaOrden = () => {
      
   }
   return (
-    <section className='section-container'>
+    <>
+      <div className="section-title">
+        <h4 className="text-center">Generar nueva orden</h4>
+      </div>
+      <section className='section-container'>
       <div className='section-container-title'>    
         <h4>Nueva Orden</h4>
       </div>
@@ -54,7 +58,7 @@ export const NuevaOrden = () => {
           <input
             type='number'
             id='id_afiliado'
-            placeholder='Usuario'
+            placeholder='Código de afiliado'
             className='input-order'
             {...register('id_afiliado', {
               required: 'Debe ingresar un codigo de usuario válido.'
@@ -142,5 +146,6 @@ export const NuevaOrden = () => {
       </form>
     </section>
 
+    </>
   )
 }

@@ -9,6 +9,7 @@ const ResumenAfiliado = () => {
     const [afiliado, setAfiliado] = useState({})
     const [ordenes, setOrdenes] = useState([])
     const [cuotas, setCuotas] = useState([])
+    const [encontrado, setEncontrado] = useState(false)
   
     const onSubmit = (data) => {
       const { id_afiliado } = data
@@ -21,6 +22,7 @@ const ResumenAfiliado = () => {
               getCuotaByAfiliadoId(id_afiliado).then(
                 dataCuotas => {
                   setCuotas(dataCuotas)
+                  setEncontrado(true);
                 }
               )
             }
@@ -30,8 +32,15 @@ const ResumenAfiliado = () => {
     }
   
     return (
-      <div className='container-nuevo-comercio'>
-        <form onSubmit={handleSubmit(onSubmit)} className='form-nuevo-comercio'>
+      <>
+        <div className="section-title">
+          <h4 className="text-center">Resumen de afiliado</h4>
+        </div>
+
+        <section className='searcher-container'>
+          <div className='searcher-body'>
+            <p className='searcher-description'>Ingrese código de afiliado.</p>
+            <form onSubmit={handleSubmit(onSubmit)} className='searcher-form'>
               <input type='number' placeholder='Codigo del afiliado' className='input-comercio'
               {
                   ...register('id_afiliado', {
@@ -41,46 +50,58 @@ const ResumenAfiliado = () => {
               <p>{errors.id_afiliado?.message}</p>
               <div className="btn-comercio-afiliado">
                   <button className='btn-nuevo-comercio btn-guardar-comercio' type='submit'>Buscar</button>
-                  <button className='btn-nuevo-comercio btn-reset-comercio' type='reset'>Borrar</button>
+                  <button className='btn-nuevo-comercio btn-reset-comercio' type='reset' onClick={() => setEncontrado(false)}>Borrar</button>
               </div>
-        </form>
+            </form>
+          </div>
+        
+        {
+          encontrado &&
+          <div className="searcher-body mt-20 text-white">
+            <h4>Datos del afiliado</h4>
+            <p>Nombre: {afiliado.name}</p>
+            <p>Codigo: {afiliado.id_afiliado}</p>
+            <p>Fecha de registro: {afiliado.createdAt}</p>
+            <p>Saldo: {afiliado.saldo}</p>
+          </div>
+        }
+        
   
-        <div className="info-afiliado">
-          <h4>Datos del afiliado</h4>
-          <p>Nombre: {afiliado.name}</p>
-          <p>Codigo: {afiliado.id_afiliado}</p>
-          <p>Fecha de registro: {afiliado.createdAt}</p>
-          <p>Saldo: {afiliado.saldo}</p>
+        <div className='orders-container container-border mt-20 px-20'>
+            <div className="table-title border-bottom">
+              <h4 className='px-20'>Listado de ordenes</h4>
+            </div>
+            <div className='table-wrapper'>
+            <table className='table'>
+              <thead className='thead'>
+                <tr>
+                  <th>Código</th>
+                  <th>Comercio</th>
+                  <th>Monto</th>
+                </tr>
+              </thead>
+              <tbody className='tbody'>
+                {
+                  ordenes.map( orden => (
+                    <tr key={orden.id_orden}>
+                      <td>{orden.id_orden}</td>
+                      <td>{orden.comercio.name}</td>
+                      <td>{orden.monto_credito}</td>
+                    </tr>
+                  ))
+                }
+              </tbody>
+            </table>
+            </div>
         </div>
   
-        <div className='container'>
-          <h1 className='table-title'>Listado de Ordenes</h1>
-          <table className='comercio-table'>
-            <thead>
-              <tr>
-                <th>Código</th>
-                <th>Comercio</th>
-                <th>Monto</th>
-              </tr>
-            </thead>
-            <tbody>
-              {
-                ordenes.map( orden => (
-                  <tr key={orden.id_orden}>
-                    <td>{orden.id_orden}</td>
-                    <td>{orden.comercio.name}</td>
-                    <td>{orden.monto_credito}</td>
-                  </tr>
-                ))
-              }
-            </tbody>
-          </table>
-        </div>
-  
-        <div className='container'>
-          <h1 className='table-title'>Listado Cuotas</h1>
-          <table className='comercio-table'>
-            <thead>
+        <div className='orders-container container-border mt-20 px-20'>
+            <div className="table-title border-bottom">
+              <h4 className='px-20'>Listado de cuotas</h4>
+            </div>
+            <div className='table-wrapper'>
+            <table className='table'>
+            <thead className='thead'>
               <tr>
                 <th>Código</th>
                 <th>Vencimiento</th>
@@ -88,7 +109,7 @@ const ResumenAfiliado = () => {
                 <th>Estado</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className='tbody'>
               {
                 cuotas.map( cuota => (
                   <tr key={cuota.id_cuota}>
@@ -101,8 +122,12 @@ const ResumenAfiliado = () => {
               }
             </tbody>
           </table>
+            </div>
+          
         </div>
-      </div>
+      </section>
+      </>
+      
     )
   }
 

@@ -17,8 +17,19 @@
 }
 
 .simple-button {
+    margin: 2px;
     padding: 2px 10px;
     border-radius: 4px;
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #ff0000;
+}
+
+.btn-danger:hover {
+    color: #ff0000;
+    background-color: #fdddb4;
 }
 
 .btn-dark {
