@@ -55,3 +55,16 @@ export const postAfiliado = (afiliado) => {
       throw new Error('could not fetch DELETE');
     }
   };
+
+  export const updateAfiliado = (id,updated) => {
+    try {
+       fetch(`${URL}/${id}`,{
+        method: 'PUT',
+        headers:{"Content-type": "application/json; charset=UTF-8"},
+        body: JSON.stringify(updated), 
+       });
+     
+    } catch {
+      throw new Error('could not fetch PUT');
+    }
+  };

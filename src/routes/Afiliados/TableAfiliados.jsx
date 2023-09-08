@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { deleteAfiliado, getAfiliados } from '../../services/AfiliadoService'
+import { deleteAfiliado, getAfiliados,updateAfiliado } from '../../services/AfiliadoService'
 import { IconDelete, IconEdit } from '../../components/Icons'
 import { Modal } from './Modal'
 import './TableAfiliados.css'
@@ -49,6 +49,19 @@ export const TableAfiliados = () => {
     setModalVisible(false);
   }
 
+  const handleUpdateData=(updatedData)=>{
+    const updatedAffiliates = allAffiliates.map((affiliate) => {
+      if (affiliate.id_afiliado === selectedRowData.id_afiliado) {
+        return updatedData;
+      }
+      return affiliate;
+    });
+  
+    setAllAffiliates(updatedAffiliates);
+    updateAfiliado(selectedRowData.id_afiliado, updatedData);
+    closeModal();
+  }
+
 
   return (
     <>
@@ -67,7 +80,6 @@ export const TableAfiliados = () => {
               <th>BARRIO</th>
               <th>CALLE</th>
               <th>NUMERO</th>
-              <th>ESTADO</th>
               <th></th>
             </tr>
           </thead>
@@ -84,7 +96,6 @@ export const TableAfiliados = () => {
                 <td>{affiliate.barrio}</td>
                 <td>{affiliate.calle}</td>
                 <td>{affiliate.numero}</td>
-                {affiliate.active ? <td>Activo</td> : <td>Inactivo</td>}
                 <td>
                   <span>
                     <button className='modal-button' onClick={() => handleEditClick(affiliate)}>
@@ -100,7 +111,7 @@ export const TableAfiliados = () => {
           </tbody>
         </table>
       </div>
-      {modalVisible && <Modal closeModal = {closeModal} selectedRowData={selectedRowData}/>}
+      {modalVisible && <Modal closeModal = {closeModal} selectedRowData={selectedRowData} onUpdateData={handleUpdateData}/>}
     </>
   )
 }

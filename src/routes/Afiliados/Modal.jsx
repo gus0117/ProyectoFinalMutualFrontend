@@ -2,15 +2,13 @@ import { useForm } from 'react-hook-form'
 import './Modal.css'
 import { IconClose } from '../../components/Icons'
 
-export const Modal = (closeModal,selectedRowData) => {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm();
-  
-  
+export const Modal = ({closeModal,selectedRowData,onUpdateData}) => {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const{name,lastname,dni,cuil,phone,mail,saldo,barrio,calle,numero} = selectedRowData
+
   const onSubmit = (data) => {
-    // postAfiliado(data)
-    console.log(data)
-    // reset();
-    
+    onUpdateData(data)
+    closeModal()    
   }
   return (
     <div className="modal-container">
@@ -29,7 +27,7 @@ export const Modal = (closeModal,selectedRowData) => {
           {...register('name', {
             required: 'Debe ingresar un Nombre'
           })}
-          value={selectedRowData?.name || ''}
+          defaultValue={name}
         />
         <p>{errors.name?.message}</p>
         <input
@@ -40,6 +38,7 @@ export const Modal = (closeModal,selectedRowData) => {
           {...register('lastname', {
             required: 'Debe ingresar Apellido.'
           })}
+          defaultValue={lastname}
         />
         <p>{errors.lastname?.message}</p>
         <input
@@ -50,6 +49,7 @@ export const Modal = (closeModal,selectedRowData) => {
           {...register('dni', {
             required: '⚠ Debe ingresar numero de documento.'
           })}
+          defaultValue={dni}
         />
         <p>{errors.dni?.message}</p>
         <input
@@ -60,6 +60,7 @@ export const Modal = (closeModal,selectedRowData) => {
           {...register('cuil', {
             required: 'Debe ingresar un cuil'
           })}
+          defaultValue={cuil}
         />
         <p>{errors.cuil?.message}</p>
         <input
@@ -70,6 +71,7 @@ export const Modal = (closeModal,selectedRowData) => {
           {...register('phone', {
             required: ' ⚠ Debe ingresar un telefono.'
           })}
+          defaultValue={phone}
         />
         <p>{errors.phone?.message}</p>
         <input
@@ -80,6 +82,7 @@ export const Modal = (closeModal,selectedRowData) => {
           {...register('mail', {
             required: 'Debe ingresar un correo electronico.'
           })}
+          defaultValue={mail}
         />
         <p>{errors.mail?.message}</p>
         <input
@@ -90,6 +93,7 @@ export const Modal = (closeModal,selectedRowData) => {
           {...register('saldo', {
             required: ' ⚠ Debe ingresar monto.'
           })}
+          defaultValue={saldo}
         />
         <p>{errors.saldo?.message}</p>
         <input
@@ -100,6 +104,7 @@ export const Modal = (closeModal,selectedRowData) => {
           {...register('barrio', {
             required: ' ⚠ Debe ingresar un barrio.'
           })}
+          defaultValue={barrio}
         />
         <p>{errors.barrio?.message}</p>
         <input
@@ -110,6 +115,7 @@ export const Modal = (closeModal,selectedRowData) => {
           {...register('calle', {
             required: ' ⚠ Debe ingresar una calle'
           })}
+          defaultValue={calle}
         />
         <p>{errors.calle?.message}</p>
         <input
@@ -120,18 +126,9 @@ export const Modal = (closeModal,selectedRowData) => {
           {...register('numero', {
             required: 'Debe ingresar un numero'
           })}
+          defaultValue={numero}
         />
         <p>{errors.numero?.message}</p>
-        <input
-          type='booleano'
-          id='active'
-          placeholder='Estado'
-          className='input-order'
-          {...register('active', {
-            required: ' ⚠ Debe ingresar un estado'
-          })}
-        />
-        <p>{errors.phone?.message}</p>
 
 
       </div>
