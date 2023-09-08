@@ -1,0 +1,14 @@
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-title h4 {
+    background-color: #fdddb4;
+    color: var(--c-secondary);
+    width: 50%;
+    font-size: 2rem;
+    padding: 15px 1px;
+    border-radius: 0 0 40px 40px;
+}

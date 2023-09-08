@@ -23,9 +23,12 @@ const EditComercio = () => {
         );
     }
     return (
-    <section className='container-nuevo-comercio'>
-        <h1 className='letter'>Registrar Nuevo Comercio</h1>
-        <form onSubmit={handleSubmit(onSubmit)} className='form-nuevo-comercio'>
+        <>
+            <div className="section-title">
+                <h4 className="text-center">Editar comercio</h4>
+            </div>
+            <section className='container-nuevo-comercio'>
+        <form onSubmit={handleSubmit(onSubmit)} className='form-nuevo-comercio searcher-body mt-20'>
             <input type='text' className='input-comercio' placeholder='Nombre del comercio'
             {
                 ...register('name', {
@@ -81,6 +84,8 @@ const EditComercio = () => {
             </div>
         </form>
     </section>
+        </>
+    
     )
 }
 
