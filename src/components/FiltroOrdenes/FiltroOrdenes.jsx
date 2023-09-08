@@ -4,6 +4,7 @@ import './FiltroOrdenes.css'
 const FiltroOrdenes = ({ list, getFilteredList, resetTable }) => {
     const [filter, setFilter] = useState("")
     const [tipoFiltro, setTipoFiltro] = useState("todas")
+    const [mostrarImpagas, setMostrarImpagas] = useState(false)
     
     const filterList = () => (
         list.filter( item => {
@@ -16,21 +17,21 @@ const FiltroOrdenes = ({ list, getFilteredList, resetTable }) => {
             else if(tipoFiltro === "orden"){
                 return item.id_orden === Number(filter)
             }
-            else if(tipoFiltro ==="impagas"){
-                console.log("impagas")
-                return item.estado_pagado === false
-            }
             return true;
         })
     )
 
     useEffect(()=>{
-        if(filter === "" && tipoFiltro !== "impagas"){
+        if(filter === "" && !mostrarImpagas){
             resetTable();
             return;
         }
-        getFilteredList(filterList())
-    },[filter, tipoFiltro])
+        let listaFiltrada = filterList()
+        if(mostrarImpagas){
+           listaFiltrada = listaFiltrada.filter( item => item.estado_pagado === false)
+        }
+        getFilteredList(listaFiltrada)
+    },[filter, tipoFiltro, mostrarImpagas])
 
     const handleFilter = (event) => {
         setFilter(event.target.value)
@@ -40,9 +41,13 @@ const FiltroOrdenes = ({ list, getFilteredList, resetTable }) => {
         setTipoFiltro(event.target.value)
     }
 
+    const handleCheckbox = (event) => {
+        setMostrarImpagas(!mostrarImpagas)
+    }
+
     const resetFilters = () => {
-        setTipoFiltro("todas")
         setFilter("")
+        resetTable()
     }
   
     return (
@@ -53,8 +58,9 @@ const FiltroOrdenes = ({ list, getFilteredList, resetTable }) => {
                 <option value="comercio">Comercio</option>
                 <option value="afiliado">Afiliado</option>
                 <option value="orden">Codigo de orden</option>
-                <option value="impagas">Impagas</option>
             </select>
+            <input type="checkbox" value={mostrarImpagas} name='impagas' onChange={handleCheckbox}/>
+            <label htmlFor="impagas" className='text-white'>Mostrar ordenes impagas</label>
             <button onClick={() => resetFilters()} className="simple-button btn-white">Limpiar</button>
         </div>
   )
