@@ -30,6 +30,13 @@ const ResumenAfiliado = () => {
         }
       )  
     }
+
+    const handleReset = () => {
+      setEncontrado(false)
+      setAfiliado({})
+      setCuotas([])
+      setOrdenes([])
+    }
   
     return (
       <>
@@ -50,7 +57,7 @@ const ResumenAfiliado = () => {
               <p>{errors.id_afiliado?.message}</p>
               <div className="btn-comercio-afiliado">
                   <button className='btn-nuevo-comercio btn-guardar-comercio' type='submit'>Buscar</button>
-                  <button className='btn-nuevo-comercio btn-reset-comercio' type='reset' onClick={() => setEncontrado(false)}>Borrar</button>
+                  <button className='btn-nuevo-comercio btn-reset-comercio' type='reset' onClick={() => handleReset()}>Borrar</button>
               </div>
             </form>
           </div>
@@ -61,7 +68,7 @@ const ResumenAfiliado = () => {
             <h4>Datos del afiliado</h4>
             <p>Nombre: {afiliado.name}</p>
             <p>Codigo: {afiliado.id_afiliado}</p>
-            <p>Fecha de registro: {afiliado.createdAt}</p>
+            <p>Fecha de registro: {new Date(afiliado.createdAt).toLocaleDateString()}</p>
             <p>Saldo: {afiliado.saldo}</p>
           </div>
         }
