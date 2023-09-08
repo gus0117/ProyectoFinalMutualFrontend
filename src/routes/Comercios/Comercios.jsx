@@ -71,10 +71,12 @@ const Comercios = () => {
                               <td>{comercio.calle}</td>
                               <td>{comercio.numero}</td>
                               <td>{comercio.localidad}</td>
-                              <td>
-                                <Link className='simple-button btn-dark' to={`editarComercio/${comercio.id_comercio}`}>
-                                    <IconEdit />
-                                </Link>
+                              <td className='d-flex'>
+                                <div className='simple-button btn-dark'>
+                                  <Link to={`editarComercio/${comercio.id_comercio}`}>
+                                      <IconEdit />
+                                  </Link>
+                                </div>
                                 <button className='simple-button btn-danger' onClick={() => deleteComercio(comercio.id_comercio)}>
                                   <i>
                                       <IconDelete />
