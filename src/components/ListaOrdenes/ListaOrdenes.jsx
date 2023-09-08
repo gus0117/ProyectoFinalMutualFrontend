@@ -10,9 +10,11 @@ import FiltroOrdenes from '../FiltroOrdenes/FiltroOrdenes'
 
 export const ListaOrdenes = () => {
   const [allOrders, setAllOrders] = useState([])
+  const [totalDeuda, setTotalDeuda] = useState(0)
 
   useEffect(() => {
     resetTable()
+    setTotalDeuda(allOrders.reduce(((suma, item) => suma + item.estado_pagado ? 0 : item.monto_credito),0))
   }, []);
 
 
@@ -47,6 +49,12 @@ export const ListaOrdenes = () => {
 
   return (
     <>
+{/*     <div className="searcher-container">
+      <div className='searcher-body'>
+        <p className='text-white'>Total adeudado: ${totalDeuda}</p>
+      </div>
+    </div> */}
+    
     <section className='section-container'>
         <div className='section-container-title d-flex align-items-center justify-content-between'>
           <FiltroOrdenes 
@@ -92,7 +100,7 @@ export const ListaOrdenes = () => {
                     <td>{order.comercio.name}</td>
                     <td>{order.comercio.id_comercio}</td>
                     <td>{date.toLocaleDateString()}</td>
-                    <td>{order.monto_credito}</td>
+                    <td>${order.monto_credito}</td>
                     {order.estado_pagado ? <td>{order.fecha_pago}</td> : <td>Pendiente</td>}
                     { order.estado_pagado ? <td>Pagado</td>: <td>No Pagado</td>}
 

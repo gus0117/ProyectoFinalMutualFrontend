@@ -97,3 +97,8 @@
     background-color: #fff;
     transition: 0.4s;
   }
+
+  .my-10 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
