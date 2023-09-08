@@ -13,7 +13,7 @@ const Home = () => {
   }, [])
   return (
     <div className='home-container'>
-      <h1 className='text-center home-title-1'>Bienvenido {username}</h1>
+      <h1 className='text-center home-title-1'>Bienvenido/a <span className="uppercase">{username}</span></h1>
       <h4 className="text-center home-title-2">Aquí hay algunas opciones rápidas que puedes usar.</h4>
       <div className="home-quick-buttons">
         <Link className='quick-button' to="/ordenes">Ordenes</Link>
@@ -70,7 +70,7 @@ const Home = () => {
           </li>
           <li>
             <p className="option-guide">
-              <span>Pagos:</span>En esta opción se puede registrar el pago de las cuotas, para ello, se debe ingresar el código de la cuota o el código del afiliado para visualizar las cuotas adeudadas.
+              <span>Pagos:</span>En esta opción se puede registrar el pago de las cuotas, para ello, se debe ingresar el código del código del afiliado para visualizar las cuotas adeudadas.
             </p>
           </li>
         </ul>

@@ -66,65 +66,70 @@ const ResumenAfiliado = () => {
           </div>
         }
         
-  
-        <div className='orders-container container-border mt-20 px-20'>
+        {
+          ordenes.length > 0 && 
+          <div className='orders-container container-border mt-20 px-20'>
             <div className="table-title border-bottom">
               <h4 className='px-20'>Listado de ordenes</h4>
             </div>
             <div className='table-wrapper'>
-            <table className='table'>
-              <thead className='thead'>
-                <tr>
-                  <th>Código</th>
-                  <th>Comercio</th>
-                  <th>Monto</th>
-                </tr>
-              </thead>
-              <tbody className='tbody'>
-                {
-                  ordenes.map( orden => (
-                    <tr key={orden.id_orden}>
-                      <td>{orden.id_orden}</td>
-                      <td>{orden.comercio.name}</td>
-                      <td>{orden.monto_credito}</td>
-                    </tr>
-                  ))
-                }
-              </tbody>
-            </table>
+              <table className='table'>
+                <thead className='thead'>
+                  <tr>
+                    <th>Código</th>
+                    <th>Comercio</th>
+                    <th>Monto</th>
+                  </tr>
+                </thead>
+                <tbody className='tbody'>
+                  {
+                    ordenes.map( orden => (
+                      <tr key={orden.id_orden}>
+                        <td>{orden.id_orden}</td>
+                        <td>{orden.comercio.name}</td>
+                        <td>{orden.monto_credito}</td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
             </div>
-        </div>
-  
-        <div className='orders-container container-border mt-20 px-20'>
+          </div>
+        }
+        
+        {
+          cuotas.length > 0 && 
+          <div className='orders-container container-border mt-20 px-20'>
             <div className="table-title border-bottom">
               <h4 className='px-20'>Listado de cuotas</h4>
             </div>
             <div className='table-wrapper'>
-            <table className='table'>
-            <thead className='thead'>
-              <tr>
-                <th>Código</th>
-                <th>Vencimiento</th>
-                <th>Monto</th>
-                <th>Estado</th>
-              </tr>
-            </thead>
-            <tbody className='tbody'>
-              {
-                cuotas.map( cuota => (
-                  <tr key={cuota.id_cuota}>
-                    <td>{cuota.id_cuota}</td>
-                    <td>{cuota.fecha_vencimiento}</td>
-                    <td>{cuota.monto}</td>
-                    { cuota.estado_pagado ? <td>Pagado</td> : <td>No Pagado</td>}
+              <table className='table'>
+                <thead className='thead'>
+                  <tr>
+                    <th>Código</th>
+                    <th>Vencimiento</th>
+                    <th>Monto</th>
+                    <th>Estado</th>
                   </tr>
-                ))
-              }
-            </tbody>
-          </table>
+                </thead>
+                <tbody className='tbody'>
+                  {
+                    cuotas.map( cuota => (
+                      <tr key={cuota.id_cuota}>
+                        <td>{cuota.id_cuota}</td>
+                        <td>{cuota.fecha_vencimiento}</td>
+                        <td>{cuota.monto}</td>
+                        { cuota.estado_pagado ? <td>Pagado</td> : <td>No Pagado</td>}
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </table>
             </div>
-          
-        </div>
+          </div>
+        }
+        
       </section>
       </>
       

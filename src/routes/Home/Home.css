@@ -65,3 +65,7 @@
 .home-sublist {
     margin-left: 40px;
 }
+
+.uppercase {
+    text-transform: uppercase;
+}
