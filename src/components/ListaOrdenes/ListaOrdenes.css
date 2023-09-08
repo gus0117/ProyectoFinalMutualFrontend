@@ -61,3 +61,39 @@
   .btn-pagar-orden {
     color: var(--c-text-dark);
   }
+
+  .d-flex{
+    display: flex;
+  }
+
+  .align-items-center{
+    align-items: center;
+  }
+
+  .justify-content-center{
+    justify-content: center;
+  }
+
+  .justify-content-between{
+    justify-content: space-between;
+  }
+
+  .link-nuevo-registro {
+    text-decoration: none;
+    color: var(--c-secondary);
+    margin: auto 15px;
+    padding: 7px 15px;
+    background-color: #fdddb4;
+    border-radius: 7px;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Poppins', Calibri, 'Trebuchet MS', sans-serif;
+    transition: 0.4s;
+  }
+
+  .link-nuevo-registro:hover {
+    text-decoration: none;
+    color: var(--c-secondary);
+    background-color: #fff;
+    transition: 0.4s;
+  }

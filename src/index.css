@@ -16,3 +16,7 @@ background: linear-gradient(90deg, rgba(14,41,84,1) 0%, rgba(31,110,140,1) 88%, 
     --c-text-white: #FFFCFD;
     --c-text-dark: #1f1f1f;
 }
+
+.text-center {
+    text-align: center;
+}

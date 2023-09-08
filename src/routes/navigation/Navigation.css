@@ -8,6 +8,7 @@
 }
 
 .nav-link {
+    font-size: 1rem;
     font-family: 'Poppins', Courier, monospace;
     margin-left: 12px;
     text-decoration: none;
@@ -18,5 +19,6 @@
 
 .nav-link:hover {
     color: var(--c-secondary);
+    text-decoration: none;
     transition: 0.4s;
 }
