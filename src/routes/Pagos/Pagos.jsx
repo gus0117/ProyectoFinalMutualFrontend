@@ -26,7 +26,7 @@ const Pagos = () => {
   return (
     <>
       <div className="section-title">
-        <h4 className="text-center">Gestión de pagos de cuotas</h4>
+        <h4 className="text-center">Gestión de cobro de cuotas</h4>
       </div>
       <div className='searcher-container'>
         <div className='searcher-body'>

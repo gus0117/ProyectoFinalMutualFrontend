@@ -70,7 +70,7 @@ const Home = () => {
           </li>
           <li>
             <p className="option-guide">
-              <span>Pagos:</span>En esta opción se puede registrar el pago de las cuotas, para ello, se debe ingresar el código del código del afiliado para visualizar las cuotas adeudadas.
+              <span>Pagos:</span>En esta opción se puede registrar el cobro de las cuotas, para ello, se debe ingresar el código del código del afiliado para visualizar las cuotas adeudadas.
             </p>
           </li>
         </ul>

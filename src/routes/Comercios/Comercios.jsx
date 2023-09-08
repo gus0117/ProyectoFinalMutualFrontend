@@ -32,6 +32,9 @@ const Comercios = () => {
             <div className="btn-container-comercio">
               <Link className='nuevo-comercio' to="nuevoComercio">Nuevo Comercio</Link>
             </div>
+            <div className="btn-container-comercio">
+              <button className='simple-button link-nuevo-registro'>Actualizar Lista</button>
+            </div>
             <FiltroComercio 
               list={comercios}
               getFilteredList={getFilteredList}

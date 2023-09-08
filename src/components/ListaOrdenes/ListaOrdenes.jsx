@@ -54,7 +54,11 @@ export const ListaOrdenes = () => {
             getFilteredList={setAllOrders}
             resetTable={resetTable}
           />
-          <Link to={'nuevaOrden'} className='link-nuevo-registro'>Nueva Orden</Link>
+
+          <div className="btn-container">
+            <button className='link-nuevo-registro'>Actualizar Lista</button>
+          </div>
+          <Link to={'nuevaOrden'} className='nuevo-comercio'>Nueva Orden</Link>
         </div>
         <div className='orders-container'>
         <div className='table-wrapper'>
@@ -65,14 +69,15 @@ export const ListaOrdenes = () => {
             <table className='table'>
               <thead className='thead'>
                 <tr>
+                  <th>N° DE ORDEN</th>
                   <th>DNI AFILIADO</th>
-                  <th>COMERCIO</th>
-                  <th>COD. DE COMERCIO</th>
                   <th>AFILIADO</th>
                   <th>COD. DE AFILIADO</th>
+                  <th>COMERCIO</th>
+                  <th>COD. DE COMERCIO</th>
                   <th>FECHA EMISION</th>
+                  <th>CREDITO</th>
                   <th>FECHA PAGO</th>
-                  <th>N° DE ORDEN</th>
                   <th>ESTADO</th>
                 </tr>
               </thead>
@@ -80,14 +85,15 @@ export const ListaOrdenes = () => {
                 {allOrders.map(order => {
                   let date = new Date (order.fecha_solicitud)
                   return (<tr key={order.id_orden}>
+                    <td>{order.id_orden}</td>
                     <td>{order.afiliado.dni}</td>
-                    <td>{order.comercio.name}</td>
-                    <td>{order.comercio.id_comercio}</td>
                     <td>{order.afiliado.name}</td>
                     <td>{order.afiliado.id_afiliado}</td>
+                    <td>{order.comercio.name}</td>
+                    <td>{order.comercio.id_comercio}</td>
                     <td>{date.toLocaleDateString()}</td>
+                    <td>{order.monto_credito}</td>
                     {order.estado_pagado ? <td>{order.fecha_pago}</td> : <td>Pendiente</td>}
-                    <td>{order.id_orden}</td>
                     { order.estado_pagado ? <td>Pagado</td>: <td>No Pagado</td>}
 
                     <td>
