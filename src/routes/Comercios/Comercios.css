@@ -63,3 +63,8 @@
     background-color: var(--c-text-white);
     transform: 0.4s;
 }
+
+.mx-20 {
+    margin-left: 20px;
+    margin-right: 20px;
+}
