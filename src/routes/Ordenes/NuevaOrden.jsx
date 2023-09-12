@@ -4,7 +4,7 @@ import './NuevaOrden.css'
 import { useState } from 'react';
 import { getAfiliadoById } from '../../services/AfiliadoService';
 import { useNavigate } from 'react-router-dom';
-
+import { generarPDF } from './PdfOrden';
 
 export const NuevaOrden = () => {
   const [ afilEncontrado, setAfilEncontrado ] = useState(false)
@@ -28,6 +28,7 @@ export const NuevaOrden = () => {
       return;
     }
     if(monto_credito <= afiliado.saldo){
+      generarPDF(data)
       addOrders(afiliado.id_afiliado, id_comercio, monto_credito, fecha_vencimiento, fecha_solicitud, porcentajeInteres).then(data => {
         setAfilEncontrado(false);
         setAfiliado({});

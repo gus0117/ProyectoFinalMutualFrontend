@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { deleteComercio, getComercios } from '../../services/ComercioService';
 import './Comercios.css'
 import { Link } from 'react-router-dom';
