@@ -1,3 +1,9 @@
+body{
+  background-image: url('./Login-img.jpg');
+  background-position: 50% 55% ; 
+} 
+
+
 .formulario{
     min-width: 45%;
     display: flex;

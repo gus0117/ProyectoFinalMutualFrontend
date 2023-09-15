@@ -6,9 +6,7 @@ export const generarPDF = (datosOrden,Afiliado,Comercio) => {
   let {name,lastname,dni} = Afiliado
   let{name:nameComercio} = Comercio
   const nombreMutual = 'A.M.P.M'
-  console.log(Afiliado,datosOrden,Comercio)
-
-
+  
   const pdf = new jsPDF()
   pdf.setTextColor(0, 0, 0) 
   pdf.setFontSize(14)
@@ -37,7 +35,6 @@ export const generarPDF = (datosOrden,Afiliado,Comercio) => {
   }
 
   agregarDatosEnRecuadro('Fecha emision:', fecha_solicitud)
-  console.log(fecha_solicitud)
   if (columnaActual === numColumnas) {
     xTexto = xRecuadro + separacionColumnas
   } else {
