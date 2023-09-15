@@ -1,0 +1,7 @@
+.green-icon:hover {
+  color: green !important;
+}
+
+.tbody-afiliados tr:hover .green-icon {
+  color: green; /* Cambia el color del ícono dentro de la fila al pasar el mouse sobre la fila */
+}

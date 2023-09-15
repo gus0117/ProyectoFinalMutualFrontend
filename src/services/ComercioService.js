@@ -1,8 +1,23 @@
 const URL = "http://localhost:3000/api/comercios";
-
+const URLC = "http://localhost:3000/api/"
 export const getComercios = async () => {
     try {
         const response = await fetch(URL);
+        if (!response.ok) {
+            console.log('Error al obtener la lista de comercios');
+            return null;
+        }
+        const data = await response.json();
+        //console.log(data)
+        return data
+    } catch (error) {
+        console.error('Error al obtener la lista de comercios:', error);
+    }
+}
+
+export const getComerciosPagos = async () => {
+    try {
+        const response = await fetch(URLC + '/comercios_montos/' );
         if (!response.ok) {
             console.log('Error al obtener la lista de comercios');
             return null;

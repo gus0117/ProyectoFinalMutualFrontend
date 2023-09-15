@@ -4,6 +4,7 @@ import Afiliados from './routes/Afiliados/Afiliados';
 import Ordenes from './routes/Ordenes/Ordenes';
 import Home from './routes/Home/Home';
 import Comercios from './routes/Comercios/Comercios';
+import { PagoComercio } from './Routes/Comercios/PagoComercio';
 import Pagos from './routes/Pagos/Pagos';
 import { Login } from './routes/Login/Login'
 import NuevoComercio from './routes/Comercios/NuevoComercio';
@@ -28,6 +29,7 @@ function App() {
             <Route path='comercios' element={<ProtectedRoute Component={Comercios} allowedRoles={'administrador'} />} />
             <Route path='comercios/nuevoComercio' element={<NuevoComercio />} />
             <Route path='comercios/editarComercio/:id' element={<EditComercio />} />
+            <Route path='comercios/pagoComercio' element={<PagoComercio />} />
             <Route path='ordenes' element={<Ordenes />} />
             <Route path='ordenes/nuevaOrden' element={<NuevaOrden />} />
             <Route path='pagos' element={<Pagos />} />
