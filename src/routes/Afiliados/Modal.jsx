@@ -7,8 +7,11 @@ export const Modal = ({closeModal,selectedRowData,onUpdateData}) => {
   const{name,lastname,dni,cuil,phone,mail,saldo,barrio,calle,numero} = selectedRowData
 
   const onSubmit = (data) => {
-    onUpdateData(data)
-    closeModal()    
+    const confirmacion = window.confirm("¿Estás seguro de editar este afiliado?");
+    if(confirmacion){
+      onUpdateData(data)
+      closeModal()    
+    }
   }
   return (
     <div className="modal-container">

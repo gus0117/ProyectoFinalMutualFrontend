@@ -35,14 +35,17 @@ export const TableAfiliados = () => {
   }
 
   const handleEditClick = (data) => {
-    setModalVisible(true);
-    setSelectedRowData(data);
+      setModalVisible(true);
+      setSelectedRowData(data);
   };
 
   const handleDelete = (id) => {
-    const updatedAffiliates = allAffiliates.filter((affiliate) => affiliate.id_afiliado !== id);
-    setAllAffiliates(updatedAffiliates);
-    deleteAfiliado(id)
+    const confirmacion = window.confirm("¿Estás seguro de eliminar este afiliado?");
+    if(confirmacion){
+      const updatedAffiliates = allAffiliates.filter((affiliate) => affiliate.id_afiliado !== id);
+      setAllAffiliates(updatedAffiliates);
+      deleteAfiliado(id)
+    }
   }
 
   const closeModal = ()=>{
@@ -98,10 +101,10 @@ export const TableAfiliados = () => {
                 <td>{affiliate.numero}</td>
                 <td>
                   <span>
-                    <button className='modal-button' onClick={() => handleEditClick(affiliate)}>
+                    <button className='simple-button btn-dark' onClick={() => handleEditClick(affiliate)}>
                       <IconEdit />
                     </button>
-                    <button className='modal-button' onClick={() => handleDelete(affiliate.id_afiliado)}>
+                    <button className='simple-button btn-danger' onClick={() => handleDelete(affiliate.id_afiliado)}>
                       <IconDelete />
                     </button>
                   </span>
