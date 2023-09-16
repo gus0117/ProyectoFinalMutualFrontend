@@ -12,7 +12,7 @@ const Home = () => {
     }
   }, [])
   return (
-    <div className='home-container'>
+    <div className='home-container ' id='body'>
       <h1 className='text-center home-title-1'>Bienvenido/a <span className="uppercase">{username}</span></h1>
       <h4 className="text-center home-title-2">Aquí hay algunas opciones rápidas que puedes usar.</h4>
       <div className="home-quick-buttons">

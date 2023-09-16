@@ -87,7 +87,7 @@ export const ListaOrdenes = () => {
                   <th>ESTADO</th>
                 </tr>
               </thead>
-              <tbody className='tbody'>
+              <tbody className='tbody-afiliados'>
                 {allOrders.map(order => {
                   let date = new Date (order.fecha_solicitud)
                   return (<tr key={order.id_orden}>
