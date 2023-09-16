@@ -1,5 +1,6 @@
-.filtrar-comercio {
-    margin: auto 10px;
+.centrado-horizontal {
+    display: flex;
+    justify-content: center;
 }
 
 .filtrar-comercio input {
@@ -12,8 +13,27 @@
 }
 
 .filtrar-comercio select {
-    margin-left: 5px;
+    margin: auto;
     padding: 2px 10px;
+}
+
+.form-control-comercio {
+    width: 30%;
+    height: 35px;
+    margin: auto;
+
+}
+
+.filtrar-comercio {
+    margin: auto 10px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.filtrar-comercio input,
+.filtrar-comercio select,
+.filtrar-comercio label {
+  margin: 5px;
 }
 
 .simple-button {
@@ -35,7 +55,7 @@
 .btn-dark {
     color: #fdddb4;
     background-color: var(--c-primary);
-    
+
 }
 
 .btn-dark:hover {

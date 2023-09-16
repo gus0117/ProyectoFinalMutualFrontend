@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react'
 import {getOrders, pagarOrden} from '../../services/OrdenesService'
-import { IconEdit, IconDelete } from '../Icons'
-import { DateRangePicker } from 'rsuite'
+// import { DateRangePicker } from 'rsuite'
 import 'rsuite/dist/rsuite.min.css'
 import './ListaOrdenes.css'
-import { IconsSearch } from '../Icons'
 import { Link } from 'react-router-dom';
 import FiltroOrdenes from '../FiltroOrdenes/FiltroOrdenes'
 
@@ -18,19 +16,19 @@ export const ListaOrdenes = () => {
   }, []);
 
 
-  const handleSelect = (dates) => {
-    if(!dates){
-      resetTable()
-      return;
-    }
-    let filtered = allOrders.filter((order) =>{
-      let orderDate = new Date(order.fecha_solicitud)
-      return (orderDate >= dates[0] &&
-        orderDate <= dates[1])
-    })
-    setAllOrders(filtered)
-    console.log(dates)
-  }
+  // const handleSelect = (dates) => {
+  //   if(!dates){
+  //     resetTable()
+  //     return;
+  //   }
+  //   let filtered = allOrders.filter((order) =>{
+  //     let orderDate = new Date(order.fecha_solicitud)
+  //     return (orderDate >= dates[0] &&
+  //       orderDate <= dates[1])
+  //   })
+  //   setAllOrders(filtered)
+  //   console.log(dates)
+  // }
 
   const handlePagarOrden = (id_orden) => {
     if(confirm(`Desea pagar la orden ${id_orden}`)){
@@ -55,27 +53,27 @@ export const ListaOrdenes = () => {
       </div>
     </div> */}
     
-    <section className='section-container'>
-        <div className='section-container-title d-flex align-items-center justify-content-between'>
-          <FiltroOrdenes 
+    <section >
+        <article className='section-container-title-comercio'>
+          {/* <div className="btn-container">
+            <button className='link-nuevo-registro'>Actualizar Lista</button>
+          </div> */}
+          <h4>Listado de Ordenes</h4>
+          <Link to={'nuevaOrden'} className='nuevo-comercio'>Nueva Orden</Link>
+        </article>
+        <FiltroOrdenes 
             list={allOrders}
             getFilteredList={setAllOrders}
             resetTable={resetTable}
           />
 
-          <div className="btn-container">
-            <button className='link-nuevo-registro'>Actualizar Lista</button>
-          </div>
-          <Link to={'nuevaOrden'} className='nuevo-comercio'>Nueva Orden</Link>
-        </div>
-        <div className='orders-container'>
-        <div className='table-wrapper'>
-            <div className='dates-filter'>
+        <div className='table-wrapper-afiliados'>
+            {/* <div className='dates-filter'>
               <p className='order-label'>Filtrado por fecha</p>
               <DateRangePicker onChange={handleSelect} />
-            </div>
-            <table className='table'>
-              <thead className='thead'>
+            </div> */}
+            <table className='table-afiliados'>
+              <thead className='thead-afiliados'>
                 <tr>
                   <th>N° DE ORDEN</th>
                   <th>DNI AFILIADO</th>
@@ -113,7 +111,6 @@ export const ListaOrdenes = () => {
               </tbody>
             </table>
           </div>
-        </div>
       </section>
     
     </>

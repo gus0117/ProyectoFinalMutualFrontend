@@ -51,8 +51,8 @@ const FiltroOrdenes = ({ list, getFilteredList, resetTable }) => {
     }
   
     return (
-        <div className="filtrar-comercio">
-            <input type="text" placeholder='Buscar Orden' value={filter} onChange={handleFilter}/>
+        <div className="filtrar-comercio centrado-horizontal">
+            <input type="text" className="form-control-comercio"  placeholder='Buscar Orden' value={filter} onChange={handleFilter}/>
             <select onChange={handleTypeFilter}>
                 <option value="todas">Todas</option>
                 <option value="comercio">Comercio</option>
@@ -61,7 +61,7 @@ const FiltroOrdenes = ({ list, getFilteredList, resetTable }) => {
             </select>
             <input type="checkbox" value={mostrarImpagas} name='impagas' onChange={handleCheckbox}/>
             <label htmlFor="impagas" className='text-white'>Mostrar ordenes impagas</label>
-            <button onClick={() => resetFilters()} className="simple-button btn-white">Limpiar</button>
+            {/* <button onClick={() => resetFilters()} className="simple-button btn-white">Limpiar</button> */}
         </div>
   )
 }
