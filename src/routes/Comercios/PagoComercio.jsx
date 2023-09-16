@@ -17,7 +17,7 @@ export const PagoComercio = () => {
       const updatedComercios = comercioLista.map((c) =>
         c.id_comercio === comercio.id_comercio ? { ...c, total: 0 } : c
       );
-      setComercioLista(updatedComercios);
+      setComercioLista(updatedComercios)
     }
   }
 

@@ -13,88 +13,82 @@ const Comercios = () => {
   }
 
   const resetTable = () => {
-    getComercios().then( data => {
+    getComercios().then(data => {
       setComercios(data);
     })
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     resetTable();
-  },[])
+  }, [])
 
   return (
     <>
       <div className="section-title">
         <h4 className="text-center">Gestión de comercios</h4>
       </div>
-      <section className='section-container'>
-          <div className='section-container-title d-flex align-items-center justify-content-between'>
-            <div className="btn-container-comercio">
-              <Link className='nuevo-comercio' to="nuevoComercio">Nuevo Comercio</Link>
-            </div>
-            <div className="btn-container-comercio">
-              <Link className='nuevo-comercio' to="pagoComercio">Pago a Comercio</Link>
-            </div>
-            <div className="btn-container-comercio">
-              <button className='simple-button link-nuevo-registro'>Actualizar Lista</button>
-            </div>
-            <FiltroComercio 
-              list={comercios}
-              getFilteredList={getFilteredList}
-              resetTable={ resetTable }
-            />
-          </div>
-          
-          <div className='orders-container'>
-              <div className='table-wrapper'>
-                   <h1 className='table-title'>Listado de comercios</h1>
-                   <table className='comercio-table'>
-                    <thead>
-                      <tr>
-                        <th>ID</th>
-                        <th>Nombre</th>
-                        <th>CUIT</th>
-                        <th>Telefono</th>
-                        <th>Barrio</th>
-                        <th>Calle</th>
-                        <th>Nro</th>
-                        <th>Localidad</th>
-                        <th>Acciones</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        {
-                          comercios.map( comercio => (
-                            <tr key={comercio.id_comercio}>
-                              <td>{comercio.id_comercio}</td>
-                              <td>{comercio.name}</td>
-                              <td>{comercio.cuit}</td>
-                              <td>{comercio.phone}</td>
-                              <td>{comercio.barrio}</td>
-                              <td>{comercio.calle}</td>
-                              <td>{comercio.numero}</td>
-                              <td>{comercio.localidad}</td>
-                              <td className='d-flex'>
-                                <div className='simple-button btn-dark'>
-                                  <Link to={`editarComercio/${comercio.id_comercio}`}>
-                                      <IconEdit />
-                                  </Link>
-                                </div>
-                                <button className='simple-button btn-danger' onClick={() => deleteComercio(comercio.id_comercio)}>
-                                  <i>
-                                      <IconDelete />
-                                  </i>
-                                </button>
-                              </td>
-                            </tr>
-                          ))
-                        }
-                    </tbody>
-                  </table>
-              </div>
-          </div>
+      <section>
+        <article className='section-container-title-comercio'>
+          <h4>  Listado Comercio </h4>
+          <Link className='nuevo-comercio' to="pagoComercio">Pago a Comercio</Link>
+          <Link className='nuevo-comercio' to="nuevoComercio">Nuevo Comercio</Link>
+        </article>
+        
+        <FiltroComercio
+          list={comercios}
+          getFilteredList={getFilteredList}
+          resetTable={resetTable}
+        />
+
+
+        <div className='table-wrapper-afiliados'>
+          {/* <h1 className='table-afiliados'>Listado de comercios</h1> */}
+          <table className='table-afiliados'>
+            <thead className='thead-afiliados'>
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>CUIT</th>
+                <th>Telefono</th>
+                <th>Barrio</th>
+                <th>Calle</th>
+                <th>Nro</th>
+                <th>Localidad</th>
+                <th>Acciones</th>
+              </tr>
+            </thead>
+            <tbody className='tbody-afiliados'>
+              {
+                comercios.map(comercio => (
+                  <tr key={comercio.id_comercio}>
+                    <td>{comercio.id_comercio}</td>
+                    <td>{comercio.name}</td>
+                    <td>{comercio.cuit}</td>
+                    <td>{comercio.phone}</td>
+                    <td>{comercio.barrio}</td>
+                    <td>{comercio.calle}</td>
+                    <td>{comercio.numero}</td>
+                    <td>{comercio.localidad}</td>
+                    <td className='d-flex'>
+                      <div className='simple-button btn-dark'>
+                        <Link to={`editarComercio/${comercio.id_comercio}`}>
+                          <IconEdit />
+                        </Link>
+                      </div>
+                      <button className='simple-button btn-danger' onClick={() => deleteComercio(comercio.id_comercio)}>
+                        <i>
+                          <IconDelete />
+                        </i>
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
       </section>
-      
+
     </>
   )
 }

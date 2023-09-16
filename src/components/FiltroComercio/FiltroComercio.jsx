@@ -1,32 +1,34 @@
-import React, { useEffect, useState } from 'react'
+import  { useEffect, useState } from 'react'
 
 const FiltroComercio = ({ list, getFilteredList, resetTable }) => {
     const [filter, setFilter] = useState("")
-    
+
     const filterList = () => (
-        list.filter( item => (
+        list.filter(item => (
             item.name.toLowerCase().includes(filter.toLowerCase())
         ))
     )
 
-    useEffect(()=>{
-        if(filter === ""){
+    useEffect(() => {
+        if (filter === "") {
             resetTable();
             return;
         }
         getFilteredList(filterList())
         console.log(list);
-    },[filter])
+    }, [filter])
 
     const handleFilter = (event) => {
         setFilter(event.target.value)
     }
-  return (
-    <div className="filtrar-comercio">
-        <input type="text" placeholder='Nombre del comercio' value={filter} onChange={handleFilter}/>
-        <button onClick={() => setFilter("")}>Limpiar</button>
-    </div>
-  )
+    return (
+        // <div className="filtrar-comercio">
+        <>
+            <input type="text" className="form-control-afiliado" placeholder='Nombre del comercio' value={filter} onChange={handleFilter} />
+            {/* <button onClick={() => setFilter("")}>Limpiar</button> */}
+        </>
+        // </div>
+    )
 }
 
 export default FiltroComercio
