@@ -1,14 +1,17 @@
 import { useForm } from 'react-hook-form'
-import './NuevoAfiliado.css'
+import { useNavigate } from 'react-router-dom';
 import { postAfiliado } from '../../services/AfiliadoService';
+import './NuevoAfiliado.css'
 
 export const NuevoAfiliado = () => {
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
-  
+  const navigate = useNavigate();
   
   const onSubmit = (data) => {
     postAfiliado(data)
     reset();
+    navigate('/afiliados')
+
   }
 
   return (

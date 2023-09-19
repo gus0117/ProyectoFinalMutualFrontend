@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import { deleteComercio, getComercios } from '../../services/ComercioService';
-import './Comercios.css'
 import { Link } from 'react-router-dom';
 import FiltroComercio from '../../components/FiltroComercio/FiltroComercio';
 import { IconDelete, IconEdit } from '../../components/Icons';
+import './Comercios.css';
 
 const Comercios = () => {
   const [comercios, setComercios] = useState([])
@@ -17,6 +17,7 @@ const Comercios = () => {
       setComercios(data);
     })
   }
+
 
   useEffect(() => {
     resetTable();
