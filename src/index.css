@@ -5,6 +5,11 @@
     box-sizing: border-box;
 }
 
+body{
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(90deg, rgba(14,41,84,1) 0%, rgba(31,110,140,1) 88%, rgba(46,138,153,1) 100%);
+}
 :root {
     --c-primary: #0E2954;
     --c-secondary: #1F6E8C;
@@ -15,4 +20,24 @@
 
 .text-center {
     text-align: center;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.section-title h4 {
+    background-color: #fdddb4;
+    color: var(--c-secondary);
+    width: 50%;
+    font-size: 2rem;
+    padding: 15px 1px;
+    border-radius: 0 0 40px 40px;
 }
