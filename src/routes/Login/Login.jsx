@@ -1,13 +1,3 @@
-// import './Login.css'
-// import { Formulario } from '../../components/Formulario'
-// export const Login = () => {
-//   return (
-//     <section className='inicio-login' >
-//       <Formulario />
-//     </section>
-//   )
-// }
-
 import { useState, useContext } from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom';
