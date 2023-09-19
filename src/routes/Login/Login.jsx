@@ -56,16 +56,16 @@ export const Login = () => {
           incorrectUser && <span className='incorrect-user'>Incorrect username or password.</span>
         }
         <form className='form-login' action='#'>
-          <h1 className='title-login'>Create Account</h1>
+          <h1 className='title-login'>Crear Cuenta</h1>
           <input className='input-login' type="text" placeholder="Name" />
           <input className='input-login' type="password" placeholder="Password" />
-          <button className='button-login'>Sign Up</button>
+          <button className='button-login'>Registrarse</button>
         </form>
       </div>
       <div className="form-container sign-in-container">
         <form className='form-login' onSubmit={handleSubmit(onSubmit)}>
-          <h1 className='title-login'>Sign in</h1>
-          <span className='span-login'>or use your account</span>
+          <h1 className='title-login'>Iniciar Sesión</h1>
+          <span className='span-login'>usa tu cuenta</span>
           <input className='input-login' type='text' placeholder='Usuario' 
             {
             ...register('username', {
@@ -81,23 +81,23 @@ export const Login = () => {
             } />
           <p >{errors.password?.message}</p>
           <a className="a-login" href="#">Forgot your password?</a>
-          <button className='button-login'>Sign In</button>
+          <button className='button-login'>Iniciar Sesión</button>
         </form>
       </div>
       <div className="overlay-container">
         <div className={`overlay ${isSignUp ? 'right-panel-active' : ''}`}>
           <div className="overlay-panel overlay-left">
-            <h1 className='title-login-up'>Welcome Back!</h1>
-            <p className='p-login'>To keep connected with us please login with your personal info</p>
+            <h1 className='title-login-up'>Bienvenido!</h1>
+            <p className='p-login'>Introduce tus datos</p>
             <button className={`ghost ${isSignUp ? 'right-panel-active' : ''} button-login`} onClick={toggleForm} id="signIn">
-              Sign In
+              Iniciar Sesión
             </button>
           </div>
           <div className="overlay-panel overlay-right">
-            <h1 className='title-login-up'>Hello, Friend!</h1>
-            <p className='p-login'>Enter your personal details and start the journey with us</p>
+            <h1 className='title-login-up'>Hola, Bienvenido!</h1>
+            <p className='p-login'>Registrate ;)</p>
             <button className={`ghost ${isSignUp ? 'right-panel-active' : ''} button-login`} onClick={toggleForm} id="signUp">
-              Sign Up
+              Registrarse
             </button>
           </div>
         </div>
