@@ -3,8 +3,8 @@ import { deleteAfiliado, getAfiliados,updateAfiliado } from '../../services/Afil
 import { IconDelete, IconEdit } from '../../components/Icons'
 import { AffiliatesContext } from '../../context/AffiliatesContext'
 import { Modal } from './Modal'
-import './TableAfiliados.css'
 import { mostrarDialogoConfirmacion } from '../../Utils/SweetAlert'
+import './TableAfiliados.css'
 
 
 

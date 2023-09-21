@@ -1,13 +1,15 @@
 import { useForm } from 'react-hook-form'
-import './Modal.css'
 import { IconClose } from '../../components/Icons'
+import { mostrarDialogoConfirmacion } from '../../Utils/SweetAlert'
+import './Modal.css'
 
 export const Modal = ({closeModal,selectedRowData,onUpdateData}) => {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const{name,lastname,dni,cuil,phone,mail,saldo,barrio,calle,numero} = selectedRowData
 
   const onSubmit = (data) => {
-    const confirmacion = window.confirm("¿Estás seguro de editar este afiliado?");
+    const confirmacion = mostrarDialogoConfirmacion("¿Estás seguro de editar este afiliado?");
+    console.log(confirmacion)
     if(confirmacion){
       onUpdateData(data)
       closeModal()    

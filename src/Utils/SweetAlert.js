@@ -1,25 +1,25 @@
-import Swal from 'sweetalert2'
-import withReactContent from 'sweetalert2-react-content'
+import Swal from 'sweetalert2';
 
+export const mostrarDialogoConfirmacion = async (titulo, msj) => {
+  try {
+    const result = await Swal.fire({
+      title: titulo,
+      text: msj,
+      showDenyButton: true,
+      confirmButtonText: 'Aceptar',
+      denyButtonText: 'Cancelar',
+    })
 
-export const mostrarDialogoConfirmacion = (titulo, msj) => {
-  let confirmacion = false;
-
-  Swal.fire({
-    title: titulo,
-    text: msj,
-    showDenyButton: true,
-    confirmButtonText: 'Aceptar',
-    denyButtonText: `Cancelar`,
-  }).then((result) => {
-    /* Read more about isConfirmed, isDenied below */
     if (result.isConfirmed) {
-      confirmacion = true
+      return true
     } else if (result.isDenied) {
-      confirmacion = false
+      return false
+    } else {
+      return false
     }
-  })
-
-  return confirmacion;
+  } catch (error) {
+    console.error('Error al mostrar el diálogo de confirmación:', error)
+    return false
+  }
 }
 
