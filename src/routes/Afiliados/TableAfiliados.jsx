@@ -4,6 +4,7 @@ import { IconDelete, IconEdit } from '../../components/Icons'
 import { AffiliatesContext } from '../../context/AffiliatesContext'
 import { Modal } from './Modal'
 import './TableAfiliados.css'
+import { mostrarDialogoConfirmacion } from '../../Utils/SweetAlert'
 
 
 
@@ -40,8 +41,8 @@ export const TableAfiliados = () => {
       setSelectedRowData(data);
   };
 
-  const handleDelete = (id) => {
-    const confirmacion = window.confirm("¿Estás seguro de eliminar este afiliado?");
+  const handleDelete = (id, nombre, apellido) => {
+    const confirmacion = mostrarDialogoConfirmacion("Confirmar operación", `¿Desea eliminar al o la afiliado/a "${nombre} ${apellido}"?`)
     if(confirmacion){
       const updatedAffiliates = affiliates.filter((affiliate) => affiliate.id_afiliado !== id);
       setAffiliates(updatedAffiliates);
@@ -74,6 +75,7 @@ export const TableAfiliados = () => {
         <table className='table-afiliados'>
           <thead className='thead-afiliados'>
             <tr>
+              <th>CODIGO</th>
               <th>NOMBRE</th>
               <th>APELLIDO</th>
               <th>DNI</th>
@@ -90,6 +92,7 @@ export const TableAfiliados = () => {
           <tbody className='tbody-afiliados'>
             {affiliates.map(affiliate => (
               <tr key={affiliate.id_afiliado}>
+                <td>{affiliate.id_afiliado}</td>
                 <td>{affiliate.name}</td>
                 <td>{affiliate.lastname}</td>
                 <td>{affiliate.dni}</td>
@@ -105,7 +108,7 @@ export const TableAfiliados = () => {
                     <button className='simple-button btn-dark' onClick={() => handleEditClick(affiliate)}>
                       <IconEdit />
                     </button>
-                    <button className='simple-button btn-danger' onClick={() => handleDelete(affiliate.id_afiliado)}>
+                    <button className='simple-button btn-danger' onClick={() => handleDelete(affiliate.id_afiliado, affiliate.name, affiliate.lastname)}>
                       <IconDelete />
                     </button>
                   </span>
