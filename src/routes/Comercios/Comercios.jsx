@@ -25,13 +25,6 @@ const Comercios = () => {
     resetTable();
   }, [])
 
-  // useEffect(() => {
-  //   getComercios().then(data =>{
-  //     setComercios(data)
-  //   }
-  //   )
-  // }, [])
-  
 
   return (
     <>

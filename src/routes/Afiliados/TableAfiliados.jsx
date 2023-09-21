@@ -1,6 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect,useContext } from 'react'
 import { deleteAfiliado, getAfiliados,updateAfiliado } from '../../services/AfiliadoService'
 import { IconDelete, IconEdit } from '../../components/Icons'
+import { AffiliatesContext } from '../../context/AffiliatesContext'
 import { Modal } from './Modal'
 import './TableAfiliados.css'
 
@@ -8,7 +9,7 @@ import './TableAfiliados.css'
 
 export const TableAfiliados = () => {
   const [allAffiliates, setAllAffiliates] = useState([])
-  const [affiliates, setAffiliates] = useState([])
+  const {affiliates, setAffiliates} = useContext(AffiliatesContext)
   const [query, setQuery] = useState('')
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedRowData, setSelectedRowData] = useState(null);
@@ -17,8 +18,8 @@ export const TableAfiliados = () => {
   useEffect(() => {
     getAfiliados()
       .then((data) => {
-        setAllAffiliates(data);
         setAffiliates(data);
+        setAllAffiliates(data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -26,11 +27,11 @@ export const TableAfiliados = () => {
   const handleSearch = (event) => {
     const getSearch = event.target.value;
     setQuery(getSearch)
-    if (getSearch.length > 0) {
-      const searchdata = allAffiliates.filter((item) => item.dni.includes(getSearch))
-      setAllAffiliates(searchdata)
+    if (getSearch.length > 0 && getSearch.replace(/[^0-9]/g, '')) {
+      const searchdata = affiliates.filter((item) => item.dni.includes(getSearch))
+      setAffiliates(searchdata)
     } else {
-      setAllAffiliates(affiliates)
+      setAffiliates(allAffiliates)
     }
   }
 
@@ -42,8 +43,8 @@ export const TableAfiliados = () => {
   const handleDelete = (id) => {
     const confirmacion = window.confirm("¿Estás seguro de eliminar este afiliado?");
     if(confirmacion){
-      const updatedAffiliates = allAffiliates.filter((affiliate) => affiliate.id_afiliado !== id);
-      setAllAffiliates(updatedAffiliates);
+      const updatedAffiliates = affiliates.filter((affiliate) => affiliate.id_afiliado !== id);
+      setAffiliates(updatedAffiliates);
       deleteAfiliado(id)
     }
   }
@@ -53,14 +54,14 @@ export const TableAfiliados = () => {
   }
 
   const handleUpdateData=(updatedData)=>{
-    const updatedAffiliates = allAffiliates.map((affiliate) => {
+    const updatedAffiliates = affiliates.map((affiliate) => {
       if (affiliate.id_afiliado === selectedRowData.id_afiliado) {
         return updatedData;
       }
       return affiliate;
     });
   
-    setAllAffiliates(updatedAffiliates);
+    setAffiliates(updatedAffiliates);
     updateAfiliado(selectedRowData.id_afiliado, updatedData);
     closeModal();
   }
@@ -87,7 +88,7 @@ export const TableAfiliados = () => {
             </tr>
           </thead>
           <tbody className='tbody-afiliados'>
-            {allAffiliates.map(affiliate => (
+            {affiliates.map(affiliate => (
               <tr key={affiliate.id_afiliado}>
                 <td>{affiliate.name}</td>
                 <td>{affiliate.lastname}</td>
