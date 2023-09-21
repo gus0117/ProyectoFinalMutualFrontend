@@ -21,6 +21,7 @@ export const NuevoAfiliado = () => {
       <section className="container-nuevo-comercio px-20">
       <form className='form-order-afiliado searcher-body mt-20' onSubmit={handleSubmit(onSubmit)}>
         <div className='form-content'>
+          {/* Datos personales */}
           <fieldset>
           <legend>Datos personales</legend>
           <div className='form-input-afiliado'>
@@ -103,7 +104,7 @@ export const NuevoAfiliado = () => {
             <p className='input-error'>{errors.saldo?.message}</p>
           </div>
           </fieldset>
-
+          {/* Domicilio */}
           <fieldset>
           <legend>Domicilio</legend>
         
@@ -171,7 +172,7 @@ export const NuevoAfiliado = () => {
             <p className='input-error'>{errors.nro_depto?.message}</p>
           </div>
           </fieldset>
-            
+          {/* Contacto */} 
           <div className="form-contact">
           <fieldset>
             <legend>Contacto</legend>        
