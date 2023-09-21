@@ -26,6 +26,14 @@
 	margin: 0;
 }
 
+.incorrect-user{
+	background: var(--c-primary);
+	color: white;
+	padding: 10px;
+	font-size: 15px;
+	margin-top: 5px ;
+}
+
 h2 {
 	text-align: center;
 }
@@ -88,7 +96,8 @@ button.ghost {
 }
 
 .input-login {
-	background-color: var(--c-primary);
+	background-color: white;
+	font-size: 20px;
 	border: none;
 	padding: 12px 15px;
 	margin: 8px 0;

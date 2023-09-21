@@ -78,7 +78,7 @@ export const TableAfiliados = () => {
               <th>DNI</th>
               <th>CUIL</th>
               <th>TELEFONO</th>
-              <th>MAIL</th>
+              {/* <th>MAIL</th> */}
               <th>SALDO</th>
               <th>BARRIO</th>
               <th>CALLE</th>
@@ -94,7 +94,7 @@ export const TableAfiliados = () => {
                 <td>{affiliate.dni}</td>
                 <td>{affiliate.cuil}</td>
                 <td>{affiliate.phone}</td>
-                <td>{affiliate.mail}</td>
+                {/* <td>{affiliate.mail}</td> */}
                 <td>{affiliate.saldo}</td>
                 <td>{affiliate.barrio}</td>
                 <td>{affiliate.calle}</td>

@@ -1,12 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { deleteComercio, getComercios } from '../../services/ComercioService';
+import { ComercioContext } from '../../context/ComercioContext';
 import { Link } from 'react-router-dom';
 import FiltroComercio from '../../components/FiltroComercio/FiltroComercio';
 import { IconDelete, IconEdit } from '../../components/Icons';
 import './Comercios.css';
 
 const Comercios = () => {
-  const [comercios, setComercios] = useState([])
+  const {comercios,setComercios} = useContext(ComercioContext)
+  // const [comercios, setComercios] = useState([])
 
   const getFilteredList = (filteredList) => {
     setComercios(filteredList)
@@ -22,6 +24,14 @@ const Comercios = () => {
   useEffect(() => {
     resetTable();
   }, [])
+
+  // useEffect(() => {
+  //   getComercios().then(data =>{
+  //     setComercios(data)
+  //   }
+  //   )
+  // }, [])
+  
 
   return (
     <>
@@ -43,7 +53,7 @@ const Comercios = () => {
 
 
         <div className='table-wrapper-afiliados'>
-          {/* <h1 className='table-afiliados'>Listado de comercios</h1> */}
+
           <table className='table-afiliados'>
             <thead className='thead-afiliados'>
               <tr>

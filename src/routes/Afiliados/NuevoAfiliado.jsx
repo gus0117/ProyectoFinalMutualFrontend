@@ -28,7 +28,7 @@ export const NuevoAfiliado = () => {
             type='text'
             id='name'
             placeholder='Nombre Afiliado'
-            className='input-order'
+            className='input-order custom-input'
             {...register('name', {
               required: 'Debe ingresar un Nombre'
             })}

@@ -5,15 +5,10 @@ import { UserContext } from '../../context/UserContext';
 import './Login.css';
 
 export const Login = () => {
-  const [isSignUp, setIsSignUp] = useState(false)
   const [incorrectUser, setIncorrectUser] = useState(false);
   const { setUser } = useContext(UserContext);
   const { register, handleSubmit, formState: { errors } } = useForm();
   const navigate = useNavigate();
-
-  const toggleForm = () => {
-    setIsSignUp(!isSignUp)
-  }
 
   const onSubmit = (data) => {
     const { username, password } = data
@@ -50,19 +45,11 @@ export const Login = () => {
 
 
   return (
-    <div className={`container ${isSignUp ? 'right-panel-active' : ''} container-login`}>
-      <div className="form-container sign-up-container">
-        {
-          incorrectUser && <span className='incorrect-user'>Incorrect username or password.</span>
-        }
-        <form className='form-login' action='#'>
-          <h1 className='title-login'>Crear Cuenta</h1>
-          <input className='input-login' type="text" placeholder="Name" />
-          <input className='input-login' type="password" placeholder="Password" />
-          <button className='button-login'>Registrarse</button>
-        </form>
-      </div>
+    <div className='container container-login'>
       <div className="form-container sign-in-container">
+      {
+          incorrectUser && <span className='incorrect-user'>Usuario o contraseña incorrecta.</span>
+        }
         <form className='form-login' onSubmit={handleSubmit(onSubmit)}>
           <h1 className='title-login'>Iniciar Sesión</h1>
           <span className='span-login'>usa tu cuenta</span>
@@ -80,25 +67,14 @@ export const Login = () => {
             })
             } />
           <p >{errors.password?.message}</p>
-          <a className="a-login" href="#">Forgot your password?</a>
           <button className='button-login'>Iniciar Sesión</button>
         </form>
       </div>
       <div className="overlay-container">
-        <div className={`overlay ${isSignUp ? 'right-panel-active' : ''}`}>
-          <div className="overlay-panel overlay-left">
-            <h1 className='title-login-up'>Bienvenido!</h1>
-            <p className='p-login'>Introduce tus datos</p>
-            <button className={`ghost ${isSignUp ? 'right-panel-active' : ''} button-login`} onClick={toggleForm} id="signIn">
-              Iniciar Sesión
-            </button>
-          </div>
+        <div className='overlay '>
           <div className="overlay-panel overlay-right">
             <h1 className='title-login-up'>Hola, Bienvenido!</h1>
             <p className='p-login'>Registrate ;)</p>
-            <button className={`ghost ${isSignUp ? 'right-panel-active' : ''} button-login`} onClick={toggleForm} id="signUp">
-              Registrarse
-            </button>
           </div>
         </div>
       </div>
