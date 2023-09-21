@@ -25,15 +25,6 @@
   padding: 5px 12px;
   font-size: 14px;
 }
-.custom-input {
-  border: none; /* Quita los bordes */
-  border-bottom: 1px solid #000; /* Agrega una línea inferior */
-  outline: none; /* Quita el borde de enfoque */
-  background: transparent; /* Fondo transparente */
-  padding: 0; /* Elimina el espacio interior predeterminado */
-  font-size: 16px; /* Tamaño de fuente opcional */
-  width: 100%; /* Ajusta el ancho según tus necesidades */
-}
 .order-label-afiliado {
   text-align: left;
   color: white;
