@@ -1,6 +1,13 @@
 .form-order-afiliado {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 95%;
+}
+
+.form-content {
+  display: flex;
   justify-content: space-between;
   width: 100%;
 }
