@@ -17,3 +17,21 @@
     padding: 15px 1px;
     border-radius: 0 0 40px 40px;
 }
+
+.input-error {
+    color: #f75050;
+    font-weight: 700;
+}
+
+fieldset {
+    padding: 5px 10px;
+    width: 400px;
+}
+
+legend {
+    background-color: #fdddb4;
+    color: var(--c-secondary);
+    font-weight: 800;
+    padding: 3px 6px;
+    font-size: 1.3rem;
+}
