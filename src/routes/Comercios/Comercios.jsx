@@ -1,14 +1,17 @@
 import { useContext, useEffect, useState } from 'react'
-import { deleteComercio, getComercios } from '../../services/ComercioService';
+import { deleteComercio, getComercios, editComercio } from '../../services/ComercioService';
 import { ComercioContext } from '../../context/ComercioContext';
 import { Link } from 'react-router-dom';
 import FiltroComercio from '../../components/FiltroComercio/FiltroComercio';
 import { IconDelete, IconEdit } from '../../components/Icons';
+import { ModalComercio } from './ModalComercio';
+import { mostrarDialogoConfirmacion } from '../../Utils/SweetAlert'
 import './Comercios.css';
 
 const Comercios = () => {
-  const {comercios,setComercios} = useContext(ComercioContext)
-  // const [comercios, setComercios] = useState([])
+  const { comercios, setComercios } = useContext(ComercioContext)
+  const [modalVisible, setModalVisible] = useState(false);
+  const [selectedRowData, setSelectedRowData] = useState(null);
 
   const getFilteredList = (filteredList) => {
     setComercios(filteredList)
@@ -25,6 +28,38 @@ const Comercios = () => {
     resetTable();
   }, [])
 
+  const handleEditClick = (data) => {
+    setModalVisible(true);
+    setSelectedRowData(data);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  }
+
+  const handleUpdateData = (updatedData) => {
+    const updatedComercios = comercios.map((comercio) => {
+      if (comercio.id_comercio === selectedRowData.id_comercio) {
+        return updatedData
+      }
+      return comercio
+    });
+
+    setComercios(updatedComercios);
+    editComercio(selectedRowData.id_comercio, updatedData);
+    closeModal();
+  }
+
+  
+  const handleDelete = (id, nombre ) => {
+    const confirmacion = mostrarDialogoConfirmacion("Confirmar operación", `¿Desea eliminar el comercio "${nombre}"?`)
+    if (confirmacion) {
+      const updatedComercio = comercios.filter((comercio) => comercio.id_comercio !== id);
+      setComercios(updatedComercio);
+      deleteComercio(id)
+    }
+  }
+
 
   return (
     <>
@@ -37,7 +72,7 @@ const Comercios = () => {
           <Link className='nuevo-comercio' to="pagoComercio">Pago a Comercio</Link>
           <Link className='nuevo-comercio' to="nuevoComercio">Nuevo Comercio</Link>
         </article>
-        
+
         <FiltroComercio
           list={comercios}
           getFilteredList={getFilteredList}
@@ -73,17 +108,17 @@ const Comercios = () => {
                     <td>{comercio.calle}</td>
                     <td>{comercio.numero}</td>
                     <td>{comercio.localidad}</td>
-                    <td className='d-flex'>
-                      <div className='simple-button btn-dark'>
-                        <Link to={`editarComercio/${comercio.id_comercio}`}>
+                    <td>
+                      <span>
+                        <button className='simple-button btn-dark' onClick={() => handleEditClick(comercio)}>
                           <IconEdit />
-                        </Link>
-                      </div>
-                      <button className='simple-button btn-danger' onClick={() => deleteComercio(comercio.id_comercio)}>
-                        <i>
-                          <IconDelete />
-                        </i>
-                      </button>
+                        </button>
+                        <button className='simple-button btn-danger' onClick={() => handleDelete(comercio.id_comercio, comercio.name)}>
+                          <i>
+                            <IconDelete />
+                          </i>
+                        </button>
+                      </span>
                     </td>
                   </tr>
                 ))
@@ -92,6 +127,8 @@ const Comercios = () => {
           </table>
         </div>
       </section>
+
+      {modalVisible && <ModalComercio closeModal={closeModal} selectedRowData={selectedRowData} onUpdateData={handleUpdateData} />}
 
     </>
   )

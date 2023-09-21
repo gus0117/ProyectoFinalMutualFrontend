@@ -1,5 +1,5 @@
-import { useState, useEffect,useContext } from 'react'
-import { deleteAfiliado, getAfiliados,updateAfiliado } from '../../services/AfiliadoService'
+import { useState, useEffect, useContext } from 'react'
+import { deleteAfiliado, getAfiliados, updateAfiliado } from '../../services/AfiliadoService'
 import { IconDelete, IconEdit } from '../../components/Icons'
 import { AffiliatesContext } from '../../context/AffiliatesContext'
 import { Modal } from './Modal'
@@ -10,7 +10,7 @@ import './TableAfiliados.css'
 
 export const TableAfiliados = () => {
   const [allAffiliates, setAllAffiliates] = useState([])
-  const {affiliates, setAffiliates} = useContext(AffiliatesContext)
+  const { affiliates, setAffiliates } = useContext(AffiliatesContext)
   const [query, setQuery] = useState('')
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedRowData, setSelectedRowData] = useState(null);
@@ -28,7 +28,7 @@ export const TableAfiliados = () => {
   const handleSearch = (event) => {
     const getSearch = event.target.value;
     setQuery(getSearch)
-    if (getSearch.length > 0 && getSearch.replace(/[^0-9]/g, '')) {
+    if (getSearch.length) {
       const searchdata = affiliates.filter((item) => item.dni.includes(getSearch))
       setAffiliates(searchdata)
     } else {
@@ -37,36 +37,36 @@ export const TableAfiliados = () => {
   }
 
   const handleEditClick = (data) => {
-      setModalVisible(true);
-      setSelectedRowData(data);
+    const { id_afiliado, ...restOfData } = data;
+    setModalVisible(true);
+    setSelectedRowData({ id_afiliado, ...restOfData });
   };
 
-  const handleDelete = (id, nombre, apellido) => {
-    const confirmacion = mostrarDialogoConfirmacion("Confirmar operación", `¿Desea eliminar al o la afiliado/a "${nombre} ${apellido}"?`)
-    if(confirmacion){
-      const updatedAffiliates = affiliates.filter((affiliate) => affiliate.id_afiliado !== id);
-      setAffiliates(updatedAffiliates);
-      deleteAfiliado(id)
-    }
-  }
-
-  const closeModal = ()=>{
+  const closeModal = () => {
     setModalVisible(false);
   }
 
-  const handleUpdateData=(updatedData)=>{
+  const handleUpdateData = (updatedData) => {
     const updatedAffiliates = affiliates.map((affiliate) => {
       if (affiliate.id_afiliado === selectedRowData.id_afiliado) {
-        return updatedData;
+        return updatedData
       }
-      return affiliate;
+      return affiliate
     });
-  
+
     setAffiliates(updatedAffiliates);
     updateAfiliado(selectedRowData.id_afiliado, updatedData);
     closeModal();
   }
 
+  const handleDelete = (id, nombre, apellido) => {
+    const confirmacion = mostrarDialogoConfirmacion("Confirmar operación", `¿Desea eliminar al o la afiliado/a "${nombre} ${apellido}"?`)
+    if (confirmacion) {
+      const updatedAffiliates = affiliates.filter((affiliate) => affiliate.id_afiliado !== id);
+      setAffiliates(updatedAffiliates);
+      deleteAfiliado(id)
+    }
+  }
 
   return (
     <>
@@ -118,7 +118,7 @@ export const TableAfiliados = () => {
           </tbody>
         </table>
       </div>
-      {modalVisible && <Modal closeModal = {closeModal} selectedRowData={selectedRowData} onUpdateData={handleUpdateData}/>}
+      {modalVisible && <Modal closeModal={closeModal} selectedRowData={selectedRowData} onUpdateData={handleUpdateData} />}
     </>
   )
 }
