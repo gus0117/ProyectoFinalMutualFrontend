@@ -57,8 +57,8 @@ export const TableAfiliados = () => {
     closeModal();
   }
 
-  const handleDelete = (id, nombre, apellido) => {
-    const confirmacion = mostrarDialogoConfirmacion("Confirmar operación", `¿Desea eliminar al o la afiliado/a "${nombre} ${apellido}"?`)
+  const handleDelete = async (id, nombre, apellido) => {
+    const confirmacion = await mostrarDialogoConfirmacion("Confirmar operación", `¿Desea eliminar al o la afiliado/a "${nombre} ${apellido}"?`)
     if (confirmacion) {
       const updatedAffiliates = affiliates.filter((affiliate) => affiliate.id_afiliado !== id);
       setAffiliates(updatedAffiliates);

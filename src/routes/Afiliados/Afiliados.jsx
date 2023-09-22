@@ -11,11 +11,15 @@ const Afiliados = () => {
         <h4 className="text-center">Gestión de afiliados</h4>
       </div>
       <section>
-        <div className='add-afiliado'>
-          <Link className='link-afiliado' to={'nuevoAfiliado'} > <IconAdd /> Nuevo Afiliado </Link>
-        </div>
+      <article className='section-container-title-comercio'>
+          <h4>Listado de Afiliados</h4>
+          <Link className='nuevo-comercio' to={'nuevoAfiliado'} > Nuevo Afiliado </Link>
+        </article>
+        {/* <div className='add-afiliado'>
+          <Link className='link-afiliado' to={'nuevoAfiliado'} > Nuevo Afiliado </Link>
+        </div> */}
         <article className='section-container-title-afiliado'>
-          <h4> <IconsSearch /> Buscar Afiliado </h4>
+          <h5> <IconsSearch /> Buscar Afiliado </h5>
         </article>
         <TableAfiliados />
       </section>
