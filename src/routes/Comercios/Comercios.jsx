@@ -51,8 +51,8 @@ const Comercios = () => {
   }
 
   
-  const handleDelete = (id, nombre ) => {
-    const confirmacion = mostrarDialogoConfirmacion("Confirmar operación", `¿Desea eliminar el comercio "${nombre}"?`)
+  const handleDelete = async (id, nombre ) => {
+    const confirmacion = await mostrarDialogoConfirmacion("Confirmar operación", `¿Desea eliminar el comercio "${nombre}"?`)
     if (confirmacion) {
       const updatedComercio = comercios.filter((comercio) => comercio.id_comercio !== id);
       setComercios(updatedComercio);
