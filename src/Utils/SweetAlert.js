@@ -22,4 +22,15 @@ export const mostrarDialogoConfirmacion = async (titulo, msj) => {
     return false
   }
 }
-
+export const mostrarAlerta = async (titulo, mensaje) => {
+  try {
+    await Swal.fire({
+      title: titulo,
+      text: mensaje,
+      icon: 'info',
+      confirmButtonText: 'Aceptar',
+    });
+  } catch (error) {
+    console.error('Error al mostrar la alerta:', error)
+  }
+};

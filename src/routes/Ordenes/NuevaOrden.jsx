@@ -1,16 +1,19 @@
 import { useForm } from 'react-hook-form'
 import { addOrders } from '../../services/OrdenesService';
-import './NuevaOrden.css'
 import { useState } from 'react';
-import { getAfiliadoById } from '../../services/AfiliadoService';
+import { getAfiliadoById, updateAfiliado } from '../../services/AfiliadoService';
 import { useNavigate } from 'react-router-dom';
 import { generarPDF } from './PdfOrden';
 import { getComercioById } from '../../services/ComercioService'
+import { mostrarAlerta } from '../../Utils/SweetAlert'
+import './NuevaOrden.css'
+
 export const NuevaOrden = () => {
   const [afilEncontrado, setAfilEncontrado] = useState(false)
   const { register, handleSubmit, reset, formState: { errors } } = useForm();
   const [afiliado, setAfiliado] = useState({})
   const [comercio, setComercio] = useState({})
+  const [data, setData] = useState({})
   const navigate = useNavigate();
 
   const porcentajeInteres = 0.05
@@ -22,30 +25,52 @@ export const NuevaOrden = () => {
         data => {
           setAfiliado(data)
           setAfilEncontrado(true)
+          setData(data)
         })
 
       return;
     }
-    getComercioById(data.id_comercio).then(
-      dataC => setComercio(dataC))
 
-    generarPDF(data, afiliado, comercio)
+    getComercioById(id_comercio)
+      .then((dataComercio) => {
+        if (dataComercio) {
+          if (monto_credito <= afiliado.saldo) {
+            const nuevoSaldo = afiliado.saldo - monto_credito;
+            addOrders(
+              afiliado.id_afiliado,
+              id_comercio,
+              monto_credito,
+              fecha_vencimiento,
+              fecha_solicitud,
+              porcentajeInteres
+            );
 
-    
-    if (monto_credito <= afiliado.saldo) {
-      addOrders(afiliado.id_afiliado, id_comercio, monto_credito, fecha_vencimiento, fecha_solicitud, porcentajeInteres).then(data => {
-        setAfilEncontrado(false);
-        setAfiliado({});
-        reset();
-        navigate('/ordenes')
-      }
-      )
-      return;
-    }
+            const afiliadoActualizado = { ...afiliado, saldo: nuevoSaldo };
+            updateAfiliado(afiliado.id_afiliado, afiliadoActualizado);
 
-    alert("El afiliado no cuenta con suficiente saldo para esta operación");
+            setAfilEncontrado(false);
+            setAfiliado({});
+            reset();
+            navigate('/ordenes');
+            generarPDF(data, afiliado, dataComercio); 
+          } else {
+            mostrarAlerta('Saldo insuficiente', 'El afiliado no cuenta con suficiente saldo para esta operación');
+            navigate('/ordenes');
+          }
+        } else {
+          mostrarAlerta('Comercio no encontrado', 'El código de comercio proporcionado no existe');
+          navigate('/ordenes');
+        }
+      })
+      .catch((error) => {
+        console.error('Error al buscar el comercio:', error);
+        navigate('/ordenes');
+      });
 
   }
+
+
+
   return (
     <>
       <div className="section-title">

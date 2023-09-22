@@ -6,8 +6,6 @@ import { Modal } from './Modal'
 import { mostrarDialogoConfirmacion } from '../../Utils/SweetAlert'
 import './TableAfiliados.css'
 
-
-
 export const TableAfiliados = () => {
   const [allAffiliates, setAllAffiliates] = useState([])
   const { affiliates, setAffiliates } = useContext(AffiliatesContext)
