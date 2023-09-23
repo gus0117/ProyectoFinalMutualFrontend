@@ -8,7 +8,6 @@ import { PagoComercio } from './Routes/Comercios/PagoComercio';
 import Pagos from './routes/Pagos/Pagos';
 import { Login } from './routes/Login/Login'
 import NuevoComercio from './routes/Comercios/NuevoComercio';
-// import EditComercio from './routes/Comercios/EditComercio';
 import { NuevaOrden } from './routes/Ordenes/NuevaOrden';
 import ResumenAfiliado from './routes/Resumen/ResumenAfiliado';
 import { NuevoAfiliado } from './routes/Afiliados/NuevoAfiliado';
@@ -32,7 +31,6 @@ function App() {
                 <Route path='resumen' element={<ResumenAfiliado />} />
                 <Route path='comercios' element={<ProtectedRoute Component={Comercios} allowedRoles={'administrador'} />} />
                 <Route path='comercios/nuevoComercio' element={<NuevoComercio />} />
-                {/* <Route path='comercios/editarComercio/:id' element={<EditComercio />} /> */}
                 <Route path='comercios/pagoComercio' element={<PagoComercio />} />
                 <Route path='ordenes' element={<Ordenes />} />
                 <Route path='ordenes/nuevaOrden' element={<NuevaOrden />} />
